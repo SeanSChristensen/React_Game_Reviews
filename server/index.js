@@ -17,6 +17,25 @@ app.listen(PORT, () => {
 })
 
 app.get("/api/hello", (req, res) => {
-    console.log("request recieved")
+    const now = new Date();
+    const timeString = now.toLocaleTimeString(); 
+    console.log("request recieved " + timeString)
     res.json({ message: "Hello from API"})
+})
+
+app.get("/api/gameInfo/FarCry3", (req, res) => {
+    res.json(
+        {
+            "gameName": "Far Cry 3",
+            "releaseDate": "2012-11-29",
+            "summary": "Far Cry 3 is an open-world first-person shooter set on a tropical island where players take on the role of Jason Brody, a tourist stranded among pirates and mercenaries. The game combines exploration, combat, crafting, and stealth as players fight to survive and rescue their friends.",
+            "publisher": "Ubisoft",
+            "developmentStudio": "Ubisoft Montreal",
+            "consoles": [
+                "PlayStation 3",
+                "Xbox 360",
+                "Microsoft Windows"
+            ]
+        }
+    )
 })

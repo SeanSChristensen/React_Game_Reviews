@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 function About() {
     return <h1>About Page</h1>;
@@ -26,7 +27,47 @@ function Home() {
 
 function ReviewPage() {
     const { gameName } = useParams();
-    return <h1>{gameName}</h1>;
+
+    const [data, setData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+
+
+    useEffect(() => {
+        // 1. Start fetching data when the component mounts
+        fetch(`http://localhost:3000/api/gameInfo/${gameName}`)
+            .then(response => response.json())
+            .then(json => {
+                setData(json);
+                setIsLoading(false); // 2. Stop loading when data arrives
+            })
+            .catch(error => {
+                console.error("Fetch error:", error);
+                setIsLoading(false);
+                return (<h1>Error loading game</h1>)
+            });
+    }, []); // [] ensures this effect runs ONLY once on load
+
+    if (isLoading) return <div>Loading...</div>;
+
+    return (
+        <div>
+            <h1>{gameName}</h1>
+
+            <p><strong>Release Date:</strong> {data?.releaseDate}</p>
+            <p><strong>Publisher:</strong> {data?.publisher}</p>
+            <p><strong>Development Studio:</strong> {data?.developmentStudio}</p>
+
+            <p><strong>Summary:</strong></p>
+            <p>{data?.summary}</p>
+
+            <p><strong>Consoles:</strong></p>
+
+            <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "center" }}>
+                {data?.consoles?.map((c, i) => (
+                    <li key={i}>{c}</li>
+                ))}
+            </ul>
+        </div>)
 }
 
 
