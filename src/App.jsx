@@ -1,30 +1,20 @@
-import { useState } from 'react'
 import './App.css'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
-function App() {
-    const [count, setCount] = useState(0)
-
-    function handleClick() {
-        setCount(count + 1);
-    }
-
-    return (
-        <div>
-            <h1>Counters that update together</h1>
-            <MyButton count={count} onClick={handleClick} />
-            <MyButton count={count} onClick={handleClick} />
-            
-        </div>
-    )
-
-
-    function MyButton({ count, onClick }) {
-        return (
-            <button onClick={onClick}>
-                Clicked {count} times
-            </button>
-        );
-    }
+function About() {
+    return <h1>About Page</h1>;
 }
 
-export default App
+function Home() {
+    return <h1>Home</h1>;
+}
+
+
+export default function App() {
+    return (
+        <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/home" element={<Home />} />
+        </Routes>
+    );
+}
