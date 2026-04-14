@@ -1,0 +1,8 @@
+cd D:
+cd D:\solutions\my-react-app\server
+npm start
+
+cd D:
+cd D:\solutions\my-react-app
+npm run dev
+
