@@ -49,6 +49,14 @@ function ReviewPage() {
 
     if (isLoading) return <div>Loading...</div>;
 
+    if (data.status == "Does Not Exist") {
+        return (
+            <div>
+                <h1>Game Does Not Exist</h1>
+            </div>
+        )
+    }
+    else {
     return (
         <div>
             <h1>{gameName}</h1>
@@ -68,6 +76,9 @@ function ReviewPage() {
                 ))}
             </ul>
         </div>)
+    }
+
+
 }
 
 

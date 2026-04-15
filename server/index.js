@@ -23,19 +23,39 @@ app.get("/api/hello", (req, res) => {
     res.json({ message: "Hello from API"})
 })
 
-app.get("/api/gameInfo/FarCry3", (req, res) => {
-    res.json(
-        {
-            "gameName": "Far Cry 3",
-            "releaseDate": "2012-11-29",
-            "summary": "Far Cry 3 is an open-world first-person shooter set on a tropical island where players take on the role of Jason Brody, a tourist stranded among pirates and mercenaries. The game combines exploration, combat, crafting, and stealth as players fight to survive and rescue their friends.",
-            "publisher": "Ubisoft",
-            "developmentStudio": "Ubisoft Montreal",
-            "consoles": [
-                "PlayStation 3",
-                "Xbox 360",
-                "Microsoft Windows"
-            ]
-        }
-    )
+app.get("/api/gameInfo/:gameName", (req, res) => {
+    const gameName = req.params.gameName;
+    console.log(req.params.gameName);
+    if (gameName == "FarCry3") {
+        res.json(
+            {
+                "status" : "Success",
+                "gameName": "Far Cry 3",
+                "releaseDate": "2012-11-29",
+                "summary": "Far Cry 3 is an open-world first-person shooter set on a tropical island where players take on the role of Jason Brody, a tourist stranded among pirates and mercenaries. The game combines exploration, combat, crafting, and stealth as players fight to survive and rescue their friends.",
+                "publisher": "Ubisoft",
+                "developmentStudio": "Ubisoft Montreal",
+                "consoles": [
+                    "PlayStation 3",
+                    "Xbox 360",
+                    "Microsoft Windows"
+                ]
+            }
+        )
+    }
+    else {
+        res.json(
+            {
+                "status": "Does Not Exist"
+            }
+        )
+    }
+
 })
+
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Not Found",
+        message: "The requested endpoint does not exist."
+    });
+});
