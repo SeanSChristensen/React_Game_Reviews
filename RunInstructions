@@ -1,3 +1,3 @@
 cd /d D:\solutions\my-react-app && npm run dev
 
-cd /d D:\solutions\my-react-app\server && npm start
+cd /d D:\solutions\my-react-app\server && npm run dev
