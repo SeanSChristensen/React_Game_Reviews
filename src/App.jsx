@@ -1,6 +1,7 @@
 import './App.css'
 import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import Layout from "./components/Layout";
 
 function About() {
     return <h1>About Page</h1>;
@@ -40,45 +41,42 @@ function ReviewPage() {
                 setData(json);
                 setIsLoading(false); // 2. Stop loading when data arrives
             })
-            .catch(error => {
-                console.error("Fetch error:", error);
-                setIsLoading(false);
-                return (<h1>Error loading game</h1>)
-            });
     }, []); // [] ensures this effect runs ONLY once on load
 
     if (isLoading) return <div>Loading...</div>;
 
     if (data.status == "Does Not Exist") {
         return (
-            <div>
-                <h1>Game Does Not Exist</h1>
-            </div>
+            <Layout>
+                <div>
+                    <h1>Game Does Not Exist</h1>
+                </div>
+            </Layout>
         )
     }
     else {
-    return (
-        <div>
-            <h1>{gameName}</h1>
+        return (
+            <Layout>
+                <div>
+                    <h1>{gameName}</h1>
 
-            <p><strong>Release Date:</strong> {data?.releaseDate}</p>
-            <p><strong>Publisher:</strong> {data?.publisher}</p>
-            <p><strong>Development Studio:</strong> {data?.developmentStudio}</p>
+                    <p><strong>Release Date:</strong> {data?.releaseDate}</p>
+                    <p><strong>Publisher:</strong> {data?.publisher}</p>
+                    <p><strong>Development Studio:</strong> {data?.developmentStudio}</p>
 
-            <p><strong>Summary:</strong></p>
-            <p>{data?.summary}</p>
+                    <p><strong>Summary:</strong></p>
+                    <p>{data?.summary}</p>
 
-            <p><strong>Consoles:</strong></p>
+                    <p><strong>Consoles:</strong></p>
 
-            <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "center" }}>
-                {data?.consoles?.map((c, i) => (
-                    <li key={i}>{c}</li>
-                ))}
-            </ul>
-        </div>)
+                    <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "center" }}>
+                        {data?.consoles?.map((c, i) => (
+                            <li key={i}>{c}</li>
+                        ))}
+                    </ul>
+                </div>
+            </Layout>)
     }
-
-
 }
 
 
