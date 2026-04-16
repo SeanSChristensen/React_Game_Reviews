@@ -1,28 +1,39 @@
-import './App.css'
-import { BrowserRouter, Routes, Route, Link, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import Layout from "./components/Layout";
+import { Button } from 'bootstrap';
 
 function About() {
-    return <h1>About Page</h1>;
+    return (
+        <Layout>
+            <h1>This is the about page</h1>
+            <h2>Welcome</h2>
+        </Layout>
+    )
 }
 
 function Home() {
-    async function callHelloAPI() {
-        fetch('http://localhost:3000/api/hello')
-            .then(res => {
-                if (!res.ok) {
-                    // Log text to see the actual error message/HTML
-                    return res.text().then(text => { throw new Error(text) });
-                }
-                return res.json();
-            })
-            .then(data => console.log(data))
-            .catch(err => console.error('Fetch error:', err));
-    }
+    return (
+        <Layout>
+            <h1>This is the home page</h1>
+            <h2>Welcome</h2>
+        </Layout>
+    )
+}
+
+function Search() {
+    const [input, setInput] = useState('');
+    const navigate = useNavigate();
 
     return (
-        <button onClick={() => callHelloAPI()}>button</button>
+        <Layout>
+            <button onClick={() => { navigate("/Review/" + input); }}>Search</button>
+            <input
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+            />
+        </Layout>
     )
 }
 
@@ -55,7 +66,6 @@ function ReviewPage() {
         content =
             <div>
                 <h1>{gameName}</h1>
-
                 <p><strong>Release Date:</strong> {data?.releaseDate}</p>
                 <p><strong>Publisher:</strong> {data?.publisher}</p>
                 <p><strong>Development Studio:</strong> {data?.developmentStudio}</p>
@@ -65,7 +75,7 @@ function ReviewPage() {
 
                 <p><strong>Consoles:</strong></p>
 
-                <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "center" }}>
+                <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "left" }}>
                     {data?.consoles?.map((c, i) => (
                         <li key={i}>{c}</li>
                     ))}
@@ -85,6 +95,7 @@ export default function App() {
     return (
         <Routes>
             <Route path="/about" element={<About />} />
+            <Route path="/search" element={<Search />} />
             <Route path="/home" element={<Home />} />
             <Route path="/Review/:gameName" element={<ReviewPage />} />
         </Routes>
