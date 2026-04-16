@@ -1,8 +1,28 @@
 const express = require("express");
 const cors = require("cors");
+const { Pool } = require('pg');
+
+const pool = new Pool({
+    user: 'postgres',
+    host: 'localhost',
+    database: 'postgres',
+    password: 'password',
+    port: 5432,
+});
 
 const app = express();
 const PORT = 3000;
+
+async function runQuery() {
+    const client = await pool.connect()
+    const res = await client.query('SELECT * FROM test')
+    console.log(res.rows[0])
+    client.release()
+}
+
+app.get("/databaseTest", (req, res) => {
+    runQuery();
+});
 
 app.use(cors({
     origin: "http://localhost:5173"

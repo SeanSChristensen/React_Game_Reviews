@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\server",
-    "\\src"
+    "\\src",
+    "\\src\\components"
   ],
-  "SelectedNode": "\\src\\App.jsx",
+  "SelectedNode": "\\src\\components\\Layout.jsx",
   "PreviewInSolutionExplorer": false
 }
