@@ -10,6 +10,11 @@
     color: white !important;
 }
 
+#customSearchButton {
+    background-color: #9167c8 !important;
+    color: white !important;
+}
+
 .NavBarLink {
     color: white !important;
 }
