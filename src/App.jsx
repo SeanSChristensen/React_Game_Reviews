@@ -57,30 +57,22 @@ function ReviewPage() {
     let content;
 
     if (isLoading) content = <div>Loading...</div>;
-    else if (data.status == "Does Not Exist") {
+    else if (data.status == "Fail") {
         content =
             <div>
-                <h1>Game Does Not Exist</h1>
+                <h1>Error</h1>
             </div>
     }
     else {
         content =
             <div>
                 <h1>{gameName}</h1>
-                <p><strong>Release Date:</strong> {data?.releaseDate}</p>
+                <p><strong>Release Date:</strong> {data?.release_date}</p>
                 <p><strong>Publisher:</strong> {data?.publisher}</p>
-                <p><strong>Development Studio:</strong> {data?.developmentStudio}</p>
+                <p><strong>Development Studio:</strong> {data?.development_studio}</p>
 
                 <p><strong>Summary:</strong></p>
                 <p>{data?.summary}</p>
-
-                <p><strong>Consoles:</strong></p>
-
-                <ul style={{ listStylePosition: "inside", padding: 0, textAlign: "left" }}>
-                    {data?.consoles?.map((c, i) => (
-                        <li key={i}>{c}</li>
-                    ))}
-                </ul>
             </div>
     }
 

@@ -13,11 +13,11 @@ const pool = new Pool({
 const app = express();
 const PORT = 3000;
 
-async function runQuery() {
+async function runQuery(queryString) {
     const client = await pool.connect()
-    const res = await client.query('SELECT * FROM test')
-    console.log(res.rows[0])
+    const res = await client.query(queryString)
     client.release()
+    return res.rows[0]
 }
 
 app.get("/databaseTest", (req, res) => {
@@ -43,34 +43,16 @@ app.get("/api/hello", (req, res) => {
     res.json({ message: "Hello from API"})
 })
 
-app.get("/api/gameInfo/:gameName", (req, res) => {
+app.get("/api/gameInfo/:gameName", async (req, res) => {
     const gameName = req.params.gameName;
-    console.log(req.params.gameName);
-    if (gameName == "FarCry3") {
-        res.json(
-            {
-                "status" : "Success",
-                "gameName": "Far Cry 3",
-                "releaseDate": "2012-11-29",
-                "summary": "Far Cry 3 is an open-world first-person shooter set on a tropical island where players take on the role of Jason Brody, a tourist stranded among pirates and mercenaries. The game combines exploration, combat, crafting, and stealth as players fight to survive and rescue their friends.",
-                "publisher": "Ubisoft",
-                "developmentStudio": "Ubisoft Montreal",
-                "consoles": [
-                    "PlayStation 3",
-                    "Xbox 360",
-                    "Microsoft Windows"
-                ]
-            }
-        )
+    var result = {};
+    try {
+        result = await runQuery(`select * from public."Game" where name = '${gameName}'`);
+        result["status"] = "Success"
+    } catch (e) {
+        result = { status: "Fail", error: e}
     }
-    else {
-        res.json(
-            {
-                "status": "Does Not Exist"
-            }
-        )
-    }
-
+    res.json(result)
 })
 
 app.use((req, res) => {
