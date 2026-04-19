@@ -41,11 +41,6 @@ function Search() {
     )
 }
 
-function submitRating(rating) {
-    console.log(rating)
-
-}
-
 function ReviewPage() {
     const { gameName } = useParams();
 

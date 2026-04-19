@@ -14,16 +14,23 @@ const app = express();
 const PORT = 3000;
 app.use(cors())
 app.use(express.json());
+var client;
 
 async function runQuery(queryString) {
-    const client = await pool.connect()
+    client = await pool.connect()
     const res = await client.query(queryString)
     client.release()
     return res.rows[0]
 }
 
-app.post('/rating', (req, res) => {
-    console.log(req.body);
+async function runInsertQuery(queryString) {
+    client = await pool.connect()
+    await client.query(queryString)
+    client.release()
+}
+
+app.post('/rating', async (req, res) => {
+    runInsertQuery(`INSERT INTO public.review(rating,game_name) VALUES (${req.body.rating}, '${req.body.gameName}')`)
     res.status(201).json({ message: "Data received!"});
 });
 
