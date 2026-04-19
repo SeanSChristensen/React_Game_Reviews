@@ -2,6 +2,9 @@ import { BrowserRouter, Routes, Route, Link, useParams, useNavigate } from 'reac
 import React, { useState, useEffect } from 'react';
 import Layout from "./components/Layout";
 import { Button } from 'bootstrap';
+import { FaStar } from 'react-icons/fa';
+
+
 
 function About() {
     return (
@@ -38,11 +41,18 @@ function Search() {
     )
 }
 
+function submitRating(rating) {
+    console.log(rating)
+}
+
 function ReviewPage() {
     const { gameName } = useParams();
 
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [rating, setRating] = useState(0);
+    const [hover, setHover] = useState(0);  
 
     useEffect(() => {
         // 1. Start fetching data when the component mounts
@@ -73,7 +83,27 @@ function ReviewPage() {
 
                 <p><strong>Summary:</strong></p>
                 <p>{data?.summary}</p>
+                <div className="star-rating">
+                    {[...Array(5)].map((star, index) => { 
+                        index += 1;
+
+
+                        return (
+                            <FaStar
+                                key={index}
+                                className={index <= (hover || rating) ? 'on' : 'off'} 
+                                onClick={() => setRating(index)} 
+                                onMouseEnter={() => setHover(index)}
+                                onMouseLeave={() => setHover(rating)} 
+                                size={30} 
+                                color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} 
+                            />
+                        );
+                    })}
+                </div>
+                <input onClick={() => submitRating(rating)} class="btn btn-primary" type="submit" value="Submit" />
             </div>
+
     }
 
     return (
