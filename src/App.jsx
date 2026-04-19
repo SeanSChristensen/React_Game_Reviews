@@ -43,6 +43,7 @@ function Search() {
 
 function submitRating(rating) {
     console.log(rating)
+
 }
 
 function ReviewPage() {
@@ -53,6 +54,31 @@ function ReviewPage() {
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);  
+
+
+    const [apiPostLoading, setApiPostLoading] = useState(false);
+
+    const handlePostRequest = async () => {
+        setApiPostLoading(true);
+        try {
+            const response = await fetch(`http://localhost:3000/rating`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    rating: rating,
+                    gameName: gameName
+                }),
+            });
+            const result = await response.json();
+            console.log('Success:', result);
+        } catch (error) {
+            console.error('Error:', error);
+        } finally {
+            setApiPostLoading(false);
+        }
+    };
 
     useEffect(() => {
         // 1. Start fetching data when the component mounts
@@ -101,7 +127,7 @@ function ReviewPage() {
                         );
                     })}
                 </div>
-                <input onClick={() => submitRating(rating)} class="btn btn-primary" type="submit" value="Submit" />
+                <input onClick={() => handlePostRequest()} class="btn btn-primary" type="submit" value="Submit" />
             </div>
 
     }

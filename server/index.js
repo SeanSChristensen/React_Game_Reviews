@@ -12,6 +12,8 @@ const pool = new Pool({
 
 const app = express();
 const PORT = 3000;
+app.use(cors())
+app.use(express.json());
 
 async function runQuery(queryString) {
     const client = await pool.connect()
@@ -20,8 +22,9 @@ async function runQuery(queryString) {
     return res.rows[0]
 }
 
-app.get("/databaseTest", (req, res) => {
-    runQuery();
+app.post('/rating', (req, res) => {
+    console.log(req.body);
+    res.status(201).json({ message: "Data received!"});
 });
 
 app.use(cors({
