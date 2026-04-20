@@ -95,10 +95,18 @@ function ReviewPage() {
             </div>
     }
     else {
+        const timestamp = data?.release_date;
+        const formattedDate = new Date(timestamp).toLocaleString("en-US",
+            {
+                month: "short",
+                day: "2-digit",
+                year: "numeric",
+            })
+
         content =
             <div>
                 <h1>{gameName}</h1>
-                <p><strong>Release Date:</strong> {data?.release_date}</p>
+                <p><strong>Release Date:</strong> {formattedDate}</p>
                 <p><strong>Publisher:</strong> {data?.publisher}</p>
                 <p><strong>Development Studio:</strong> {data?.development_studio}</p>
 
