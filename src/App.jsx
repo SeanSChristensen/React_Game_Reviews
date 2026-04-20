@@ -63,7 +63,7 @@ function ReviewPage() {
                 },
                 body: JSON.stringify({
                     rating: rating,
-                    gameName: gameName
+                    game_id: data?.game_id
                 }),
             });
             const result = await response.json();

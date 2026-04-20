@@ -30,7 +30,7 @@ async function runInsertQuery(queryString) {
 }
 
 app.post('/rating', async (req, res) => {
-    runInsertQuery(`INSERT INTO public.review(rating,game_name) VALUES (${req.body.rating}, '${req.body.gameName}')`)
+    runInsertQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
     res.status(201).json({ message: "Data received!"});
 });
 
@@ -38,19 +38,8 @@ app.use(cors({
     origin: "http://localhost:5173"
 }))
 
-app.get("/", (req, res) => {
-    res.send("Node server response")
-});
-
 app.listen(PORT, () => {
-    console.log('Server running on ',PORT);
-})
-
-app.get("/api/hello", (req, res) => {
-    const now = new Date();
-    const timeString = now.toLocaleTimeString(); 
-    console.log("request recieved " + timeString)
-    res.json({ message: "Hello from API"})
+    console.log('Server running on ', PORT);
 })
 
 app.get("/api/gameInfo/:gameName", async (req, res) => {
@@ -71,3 +60,15 @@ app.use((req, res) => {
         message: "The requested endpoint does not exist."
     });
 });
+
+app.get("/api/averageRating", async (req, res) => {
+    const game_id = req.params.game_id;
+    var result = {};
+    try {
+        result = await runQuery(`select AVG(rating) from public."review" where name = '${game_id}'`);
+        result["status"] = "Success"
+    } catch (e) {
+        result = { status: "Fail", error: e }
+    }
+    res.json(result)
+})
