@@ -122,7 +122,10 @@ function ReviewPage() {
                         );
                     })}
                 </div>
-                <input onClick={() => handlePostRequest()} class="btn btn-primary" type="submit" value="Submit" />
+                <div class="buttonCenter">
+                    <input onClick={() => handlePostRequest()} class="btn btn-primary" type="submit" value="Submit" />
+                </div>
+
             </div>
 
     }

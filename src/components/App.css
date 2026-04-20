@@ -19,6 +19,14 @@
     color: white !important;
 }
 
+.buttonCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+}
+
+
 body {
     background-color: #0b0537;
 }
