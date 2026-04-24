@@ -105,7 +105,7 @@ function ReviewPage() {
             })
 
         content =
-            <div>
+                <div className= "gameInfoBox">
                 <h1>{gameName}</h1>
                 <p><strong>Release Date:</strong> {formattedDate}</p>
                 <p><strong>Publisher:</strong> {data?.publisher}</p>
@@ -134,6 +134,7 @@ function ReviewPage() {
                 {apiPostLoading === "success" ? (
                     <p>Submitted!</p>
                 ) : (
+
                     <form onSubmit={handlePostRequest}>
                         <div className="buttonCenter">
                             <input
