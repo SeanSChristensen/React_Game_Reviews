@@ -105,7 +105,7 @@ function ReviewPage() {
             })
 
         content =
-                <div className= "gameInfoBox">
+            <div className="gameInfoBox">
                 <h1>{gameName}</h1>
                 <p><strong>Release Date:</strong> {formattedDate}</p>
                 <p><strong>Publisher:</strong> {data?.publisher}</p>
@@ -113,40 +113,33 @@ function ReviewPage() {
 
                 <p><strong>Summary:</strong></p>
                 <p>{data?.summary}</p>
-                <div className="star-rating">
-                    {[...Array(5)].map((star, index) => {
-                        index += 1;
-
-
-                        return (
-                            <FaStar
-                                key={index}
-                                className={index <= (hover || rating) ? 'on' : 'off'}
-                                onClick={() => setRating(index)}
-                                onMouseEnter={() => setHover(index)}
-                                onMouseLeave={() => setHover(rating)}
-                                size={30}
-                                color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'}
-                            />
-                        );
-                    })}
-                </div>
                 {apiPostLoading === "success" ? (
                     <p>Submitted!</p>
                 ) : (
-
-                    <form onSubmit={handlePostRequest}>
-                        <div className="buttonCenter">
-                            <input
-                                className="btn btn-primary"
-                                type="submit"
-                                value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
-                                disabled={apiPostLoading === "loading"}
-                            />
-                        </div>
-
-                        {apiPostLoading === "fail" && <p>Something went wrong.</p>}
-                    </form>
+                                 <><div className="star-rating">
+                            {[...Array(5)].map((star, index) => {
+                                index += 1;
+                                return (
+                                    <FaStar
+                                        key={index}
+                                        className={index <= (hover || rating) ? 'on' : 'off'}
+                                        onClick={() => setRating(index)}
+                                        onMouseEnter={() => setHover(index)}
+                                        onMouseLeave={() => setHover(rating)}
+                                        size={30}
+                                        color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
+                                );
+                            })}
+                        </div><form onSubmit={handlePostRequest}>
+                                <div className="buttonCenter">
+                                    <input
+                                        className="btn btn-primary"
+                                        type="submit"
+                                        value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
+                                        disabled={apiPostLoading === "loading"} />
+                                </div>
+                                {apiPostLoading === "fail" && <p>Something went wrong.</p>}
+                            </form></>
                 )}
             </div>
 
