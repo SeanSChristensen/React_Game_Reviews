@@ -51,11 +51,12 @@ function ReviewPage() {
     const [hover, setHover] = useState(0);  
 
 
-    const [apiPostLoading, setApiPostLoading] = useState(false);
+    const [apiPostLoading, setApiPostLoading] = useState("waiting");
 
-    const handlePostRequest = async () => {
-        setApiPostLoading(true);
+    const handlePostRequest = async (e) => {
+        e.preventDefault();
         try {
+            setApiPostLoading("loading");
             const response = await fetch(`http://localhost:3000/rating`, {
                 method: 'POST',
                 headers: {
@@ -70,9 +71,9 @@ function ReviewPage() {
             console.log('Success:', result);
         } catch (error) {
             console.error('Error:', error);
-        } finally {
-            setApiPostLoading(false);
-        }
+            setApiPostLoading("fail");
+        } 
+        setApiPostLoading("success");
     };
 
     useEffect(() => {
@@ -113,27 +114,39 @@ function ReviewPage() {
                 <p><strong>Summary:</strong></p>
                 <p>{data?.summary}</p>
                 <div className="star-rating">
-                    {[...Array(5)].map((star, index) => { 
+                    {[...Array(5)].map((star, index) => {
                         index += 1;
 
 
                         return (
                             <FaStar
                                 key={index}
-                                className={index <= (hover || rating) ? 'on' : 'off'} 
-                                onClick={() => setRating(index)} 
+                                className={index <= (hover || rating) ? 'on' : 'off'}
+                                onClick={() => setRating(index)}
                                 onMouseEnter={() => setHover(index)}
-                                onMouseLeave={() => setHover(rating)} 
-                                size={30} 
-                                color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} 
+                                onMouseLeave={() => setHover(rating)}
+                                size={30}
+                                color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'}
                             />
                         );
                     })}
                 </div>
-                <div class="buttonCenter">
-                    <input onClick={() => handlePostRequest()} class="btn btn-primary" type="submit" value="Submit" />
-                </div>
+                {apiPostLoading === "success" ? (
+                    <p>Submitted!</p>
+                ) : (
+                    <form onSubmit={handlePostRequest}>
+                        <div className="buttonCenter">
+                            <input
+                                className="btn btn-primary"
+                                type="submit"
+                                value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
+                                disabled={apiPostLoading === "loading"}
+                            />
+                        </div>
 
+                        {apiPostLoading === "fail" && <p>Something went wrong.</p>}
+                    </form>
+                )}
             </div>
 
     }
