@@ -68,12 +68,16 @@ function ReviewPage() {
                 }),
             });
             const result = await response.json();
-            console.log('Success:', result);
+            if (result.status == "success") {
+                setApiPostLoading("success");
+            }
+            else {
+                setApiPostLoading("fail");
+            }
         } catch (error) {
-            console.error('Error:', error);
+            console.log(error);
             setApiPostLoading("fail");
         } 
-        setApiPostLoading("success");
     };
 
     useEffect(() => {

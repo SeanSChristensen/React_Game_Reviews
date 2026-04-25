@@ -23,15 +23,20 @@ async function runQuery(queryString) {
     return res
 }
 
-async function runInsertQuery(queryString) {
-    client = await pool.connect()
-    await client.query(queryString)
-    client.release()
-}
-
 app.post('/rating', async (req, res) => {
-    runInsertQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
-    res.status(201).json({ message: "Data received!"});
+    var result = {};
+    try {
+        result = await runQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
+        if (result.rowCount == 1) {
+            res.status(201).json({ status: "success" });
+        }
+        else {
+            res.status(500).json({ status: "fail" });
+        }
+    }
+    catch (e) {
+        result = { status: "Error", error: e }
+    }
 });
 
 app.use(cors({
