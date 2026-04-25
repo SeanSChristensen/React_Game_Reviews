@@ -168,7 +168,7 @@ export default function App() {
         <Routes>
             <Route path="/about" element={<About />} />
             <Route path="/search" element={<Search />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Home />} />
             <Route path="/Review/:gameName" element={<ReviewPage />} />
         </Routes>
     );
