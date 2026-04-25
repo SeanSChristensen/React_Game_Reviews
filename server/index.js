@@ -20,7 +20,7 @@ async function runQuery(queryString) {
     client = await pool.connect()
     const res = await client.query(queryString)
     client.release()
-    return res.rows[0]
+    return res
 }
 
 async function runInsertQuery(queryString) {
@@ -46,12 +46,17 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     const gameName = req.params.gameName;
     var result = {};
     try {
-        result = await runQuery(`select * from public."Game" where name = '${gameName}'`);
-        result["status"] = "Success"
+        result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
+        if (result.rowCount == 0) {
+            res.json({ status: "Game not found" })
+        }
+        else {
+            result.rows[0]["status"] = "Success"
+            res.json(result.rows[0])
+        }
     } catch (e) {
-        result = { status: "Fail", error: e}
+        result = { status: "Error", error: e}
     }
-    res.json(result)
 })
 
 app.use((req, res) => {
@@ -66,9 +71,9 @@ app.get("/api/averageRating", async (req, res) => {
     var result = {};
     try {
         result = await runQuery(`select AVG(rating) from public."review" where name = '${game_id}'`);
-        result["status"] = "Success"
+        result.rows[0]["status"] = "Success"
     } catch (e) {
         result = { status: "Fail", error: e }
     }
-    res.json(result)
+    res.json(result.rows[0])
 })

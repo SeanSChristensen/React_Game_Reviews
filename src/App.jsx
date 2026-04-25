@@ -89,10 +89,16 @@ function ReviewPage() {
     let content;
 
     if (isLoading) content = <div>Loading...</div>;
-    else if (data.status == "Fail") {
+    else if (data.status == "Game not found") {
         content =
             <div>
-                <h1>Error</h1>
+                <h1>Game not found</h1>
+            </div>
+    } else if (data.status == "Error") {
+        content =
+            <div>
+                <h1>There was an error returning data to client</h1>
+                <p>{ data.error }</p>
             </div>
     }
     else {
