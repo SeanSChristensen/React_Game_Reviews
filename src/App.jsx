@@ -114,7 +114,7 @@ function ReviewPage() {
                 <p><strong>Summary:</strong></p>
                 <p>{data?.summary}</p>
                 {apiPostLoading === "success" ? (
-                    <p>Submitted!</p>
+                    <p className="submittedText" >Submitted!</p>
                 ) : (
                                  <><div className="star-rating">
                             {[...Array(5)].map((star, index) => {

@@ -62,3 +62,7 @@ star-rating .on {
     background-color: #2f199e;
     box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
 }
+
+.submittedText {
+    text-align: center;
+}
