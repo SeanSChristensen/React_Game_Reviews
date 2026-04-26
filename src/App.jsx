@@ -68,6 +68,7 @@ function ReviewPage() {
                 }),
             });
             const result = await response.json();
+            console.log(result);
             if (result.status == "success") {
                 setApiPostLoading("success");
             }
@@ -141,7 +142,8 @@ function ReviewPage() {
                                         color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
                                 );
                             })}
-                        </div><form onSubmit={handlePostRequest}>
+                        </div>
+                            <form onSubmit={handlePostRequest}>
                                 <div className="buttonCenter">
                                     <input
                                         className="btn btn-primary"
@@ -149,8 +151,9 @@ function ReviewPage() {
                                         value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
                                         disabled={apiPostLoading === "loading"} />
                                 </div>
-                                {apiPostLoading === "fail" && <p>Something went wrong.</p>}
-                            </form></>
+                            </form>
+                            {apiPostLoading === "fail" && <p>Sorry something went wrong with submitting your rating</p>}
+                        </>
                 )}
             </div>
 

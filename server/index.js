@@ -36,6 +36,7 @@ app.post('/rating', async (req, res) => {
     }
     catch (e) {
         result = { status: "Error", error: e }
+        res.status(500).json({ status: "fail" });
     }
 });
 
