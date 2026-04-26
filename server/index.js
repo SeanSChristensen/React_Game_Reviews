@@ -60,7 +60,9 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
             res.json(result.rows[0])
         }
     } catch (e) {
-        result = { status: "Error", error: e}
+        console.log(e)
+        result = { status: "error", message: "database error please contact system administrators", error: e }
+        res.json(result)
     }
 })
 

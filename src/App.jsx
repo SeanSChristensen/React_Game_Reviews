@@ -98,11 +98,12 @@ function ReviewPage() {
             <div>
                 <h1>Game not found</h1>
             </div>
-    } else if (data.status == "Error") {
+    } else if (data.status == "error") {
+        console.log(data.error)
         content =
             <div>
                 <h1>There was an error returning data to client</h1>
-                <p>{ data.error }</p>
+                <p>{ data.message }</p>
             </div>
     }
     else {
