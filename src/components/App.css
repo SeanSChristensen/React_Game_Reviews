@@ -53,14 +53,19 @@ star-rating .on {
     border-radius: 25px;
     background-color: #73AD21;
     padding: 20px;
-    width: 1840px;
-    height: 400px;
+    width: 95%;
+    height: 45%;
     position: absolute;
-    top: 30%;
+    top: 32%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #2f199e;
     box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+}
+
+.submitErrorMessage {
+    color: red;
+    text-align: center;
 }
 
 .submittedText {

@@ -152,7 +152,7 @@ function ReviewPage() {
                                         disabled={apiPostLoading === "loading"} />
                                 </div>
                             </form>
-                            {apiPostLoading === "fail" && <p>Sorry something went wrong with submitting your rating</p>}
+                            {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                         </>
                 )}
             </div>
