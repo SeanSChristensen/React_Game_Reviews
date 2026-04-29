@@ -67,13 +67,6 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     }
 })
 
-app.use((req, res) => {
-    res.status(404).json({
-        error: "Not Found",
-        message: "The requested endpoint does not exist."
-    });
-});
-
 app.get("/api/averageRating", async (req, res) => {
     const game_id = req.params.game_id;
     var result = {};
@@ -85,3 +78,21 @@ app.get("/api/averageRating", async (req, res) => {
     }
     res.json(result.rows[0])
 })
+
+app.get("/api/comments", async (req, res) => {
+    var result = {};
+    try {
+        result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${req.headers.page * 5} limit 5`);
+        result["status"] = "Success"
+    } catch (e) {
+        result = { status: "Fail", error: e }
+    }
+    res.json(result)
+})
+
+app.use((req, res) => {
+    res.status(404).json({
+        error: "Not Found",
+        message: "The requested endpoint does not exist."
+    });
+});
