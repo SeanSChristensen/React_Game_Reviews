@@ -53,6 +53,8 @@ function ReviewPage() {
 
     const [apiPostLoading, setApiPostLoading] = useState("waiting");
 
+    const currentitems = ["test", "test", "test"]
+
     const handlePostRequest = async (e) => {
         e.preventDefault();
         try {
@@ -155,6 +157,20 @@ function ReviewPage() {
                             {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                         </>
                 )}
+                <div>
+                    <ul>
+                        {currentitems.map((item, index) => (
+                            <li key={index}>{item}</li>
+                        ))}
+                    </ul>
+                    <button>
+                        Previous
+                    </button>
+                    <span> Page 1 of 1 </span>
+                    <button>
+                        Next
+                    </button>
+                </div>
             </div>
 
     }
