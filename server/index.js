@@ -14,12 +14,11 @@ const app = express();
 const PORT = 3000;
 app.use(cors())
 app.use(express.json());
-var client;
+
+var client = pool.connect()
 
 async function runQuery(queryString) {
-    client = await pool.connect()
-    const res = await client.query(queryString)
-    client.release()
+    const res = await pool.query(queryString)
     return res
 }
 
@@ -87,6 +86,7 @@ app.get("/api/comments", async (req, res) => {
     } catch (e) {
         result = { status: "Fail", error: e }
     }
+    console.log(result)
     res.json(result)
 })
 
