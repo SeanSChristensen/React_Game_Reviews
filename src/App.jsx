@@ -123,7 +123,7 @@ function ReviewPage() {
                 setComments(json)
                 setCommentsLoading(false)
             })
-    }, []); 
+    }, [commentPage]); 
 
 
     let content;
