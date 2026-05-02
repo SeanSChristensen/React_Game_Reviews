@@ -50,6 +50,7 @@ function ReviewPage() {
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);  
 
+    const [commentPage, setCommentPage] = useState(1);
 
     const [apiPostLoading, setApiPostLoading] = useState("waiting");
 
@@ -81,6 +82,16 @@ function ReviewPage() {
             console.log(error);
             setApiPostLoading("fail");
         } 
+    };
+
+    const pageUp = async (e) => {
+        e.preventDefault();
+        setCommentPage(commentPage+1)
+    };
+
+    const pageDown = async (e) => {
+        e.preventDefault();
+        setCommentPage(commentPage - 1)
     };
 
     useEffect(() => {
@@ -163,11 +174,11 @@ function ReviewPage() {
                             <li key={index}>{item}</li>
                         ))}
                     </ul>
-                    <button>
+                    <button onClick={pageDown}>
                         Previous
                     </button>
-                    <span> Page 1 of 1 </span>
-                    <button>
+                    <span> Page {commentPage} of 1 </span>
+                    <button onClick={pageUp}>
                         Next
                     </button>
                 </div>
