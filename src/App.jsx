@@ -58,7 +58,6 @@ function ReviewPage() {
     const [apiPostLoading, setApiPostLoading] = useState("waiting");
 
     const currentitems = ["test", "test", "test"]
-
     
 
     const handlePostRequest = async (e) => {
@@ -110,20 +109,24 @@ function ReviewPage() {
     }, []); 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/comments`, {
-            method: 'GET',
-            headers: {
-                //temporary change this to dynamic game id later
-                'game_id': 'bbaa500a-bc96-4964-bc0b-3b9f5db00552',
-                'page': commentPage 
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
-                setComments(json)
-                setCommentsLoading(false)
+        if (isLoading) { return }
+        else {
+            fetch(`http://localhost:3000/api/comments`, {
+                method: 'GET',
+                headers: {
+                    //temporary change this to dynamic game id later
+                    'game_id': data?.game_id,
+                    'page': commentPage
+                }
             })
-    }, [commentPage]); 
+                .then(response => response.json())
+                .then(json => {
+                    setComments(json)
+                    setCommentsLoading(false)
+                })
+        }
+    }
+        , [commentPage, isLoading]); 
 
 
     let content;
