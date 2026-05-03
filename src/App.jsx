@@ -192,17 +192,22 @@ function ReviewPage() {
                             </form>
                             {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                         </>
-                )}
-                <div>
-                    <ul>
-                        {comments.rows.map((item, index) => (
-                            <li key={index}>{item.text}</li>
+                )} 
+                <div style={{ padding: 20 }}>
+                        {comments.rows.map((item) => (
+                            <><div class="card border-light mb-3 commentCards">
+                                <div class="card-header">01/01/2000</div>
+                                    <div class="card-body">
+                                    <h5 class="card-title">{ item.text }</h5>
+                                    <p class="card-text">User1</p>
+                                    </div>
+                                </div>
+                            </>
                         ))}
-                    </ul>
                     <button onClick={pageDown}>
                         Previous
                     </button>
-                    <span> Page {commentPage} of 1 </span>
+                    <span> Page {commentPage} </span>
                     <button onClick={pageUp}>
                         Next
                     </button>
