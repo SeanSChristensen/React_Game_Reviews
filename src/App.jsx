@@ -53,11 +53,9 @@ function ReviewPage() {
     const [commentPage, setCommentPage] = useState(1);
 
     const [comments, setComments] = useState(null);
-    const [commentsLoading, setCommentsLoading] = useState(true);
+    const [commentsLoading, setCommentsLoading] = useState("waiting");
 
     const [apiPostLoading, setApiPostLoading] = useState("waiting");
-
-    const currentitems = ["test", "test", "test"]
     
 
     const handlePostRequest = async (e) => {
@@ -122,7 +120,13 @@ function ReviewPage() {
                 .then(response => response.json())
                 .then(json => {
                     setComments(json)
-                    setCommentsLoading(false)
+                    if (json.status == "fail") {
+                        setCommentsLoading("fail")
+                    }
+                    else {
+                        setCommentsLoading("success")
+                    }
+
                 })
         }
     }
@@ -131,7 +135,7 @@ function ReviewPage() {
 
     let content;
 
-    if (isLoading || commentsLoading) content = <div>Loading...</div>;
+    if (isLoading || commentsLoading == "waiting") content = <div>Loading...</div>;
     else if (data.status == "Game not found") {
         content =
             <div>
@@ -193,25 +197,42 @@ function ReviewPage() {
                             {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                         </>
                 )} 
-                <div style={{ padding: 20 }}>
+                {commentsLoading === "success" ? (
+                    <div style={{ padding: 20 }}>
                         {comments.rows.map((item) => (
                             <><div class="card border-light mb-3 commentCards">
                                 <div class="card-header">01/01/2000</div>
-                                    <div class="card-body">
-                                    <h5 class="card-title">{ item.text }</h5>
+                                <div class="card-body">
+                                    <h5 class="card-title">{item.text}</h5>
                                     <p class="card-text">User1</p>
-                                    </div>
                                 </div>
+                            </div>
                             </>
                         ))}
-                    <button onClick={pageDown}>
-                        Previous
-                    </button>
-                    <span> Page {commentPage} </span>
-                    <button onClick={pageUp}>
-                        Next
-                    </button>
-                </div>
+                        <button onClick={pageDown}>
+                            Previous
+                        </button>
+                        <span> Page {commentPage} </span>
+                        <button onClick={pageUp}>
+                            Next
+                        </button>
+                    </div>
+                ) : (
+                        <>
+                            {
+                                commentsLoading === "fail" && <><p className="submitErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
+                                    <form>
+                                        <div className="buttonCenter">
+                                            <input
+                                                className="btn btn-primary"
+                                                type="submit"
+                                                value="reload comments"
+                                                disabled={apiPostLoading === "loading"} />
+                                        </div>
+                                    </form></>
+                            }
+                        </>
+                )} 
             </div>
 
     }

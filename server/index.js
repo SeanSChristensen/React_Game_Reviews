@@ -84,7 +84,7 @@ app.get("/api/comments", async (req, res) => {
         result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5)-5} limit 5`);
         result["status"] = "Success"
     } catch (e) {
-        result = { status: "Fail", error: e }
+        result = { status: "fail", error: e }
     }
     console.log(result)
     res.json(result)
