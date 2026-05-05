@@ -209,13 +209,14 @@ function ReviewPage() {
                             </div>
                             </>
                         ))}
-                        <button onClick={pageDown}>
+                        {commentPage != 1 ? (<button onClick={pageDown}>
                             Previous
-                        </button>
+                        </button>) : (<div></div>)}
                         <span> Page {commentPage} </span>
-                        <button onClick={pageUp}>
+                        {comments.nextPage == true ? (<button onClick={pageUp}>
                             Next
-                        </button>
+                        </button>) : (<div></div>) }
+
                     </div>
                 ) : (
                         <>

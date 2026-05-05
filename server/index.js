@@ -80,9 +80,18 @@ app.get("/api/averageRating", async (req, res) => {
 
 app.get("/api/comments", async (req, res) => {
     var result = {};
+    var result2;
     try {
-        result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5)-5} limit 5`);
+        result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
+        result2 = await runQuery(`select count(game_id) from public.comment where game_id = '${req.headers.game_id}'`);
         result["status"] = "Success"
+        if (req.headers.page * 5 >= result2.rows[0].count) {
+            result["nextPage"] = false
+        }
+        else {
+            result["nextPage"] = true
+        }
+        console.log(result2)
     } catch (e) {
         result = { status: "fail", error: e }
     }
