@@ -160,45 +160,47 @@ function ReviewPage() {
 
         content =
             <div className="gameInfoBox">
-                <h1>{gameName}</h1>
-                <p><strong>Release Date:</strong> {formattedDate}</p>
-                <p><strong>Publisher:</strong> {data?.publisher}</p>
-                <p><strong>Development Studio:</strong> {data?.development_studio}</p>
+                <div className='gameInformation'>                <h1 className='gameTitle'>{gameName}</h1>
+                    <p><strong>Release Date:</strong> {formattedDate}</p>
+                    <p><strong>Publisher:</strong> {data?.publisher}</p>
+                    <p><strong>Development Studio:</strong> {data?.development_studio}</p>
 
-                <p><strong>Summary:</strong></p>
-                <p>{data?.summary}</p>
+                    <p><strong>Summary:</strong></p>
+                    <p>{data?.summary}</p></div>
+
                 {apiPostLoading === "success" ? (
                     <p className="submittedText" >Submitted!</p>
                 ) : (
-                                 <><div className="star-rating">
-                            {[...Array(5)].map((star, index) => {
-                                index += 1;
-                                return (
-                                    <FaStar
-                                        key={index}
-                                        className={index <= (hover || rating) ? 'on' : 'off'}
-                                        onClick={() => setRating(index)}
-                                        onMouseEnter={() => setHover(index)}
-                                        onMouseLeave={() => setHover(rating)}
-                                        size={30}
-                                        color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
-                                );
-                            })}
-                        </div>
-                            <form onSubmit={handlePostRequest}>
-                                <div className="buttonCenter">
-                                    <input
-                                        className="btn btn-primary"
-                                        type="submit"
-                                        value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
-                                        disabled={apiPostLoading === "loading"} />
-                                </div>
-                            </form>
-                            {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
-                        </>
-                )} 
+                    <><div className="star-rating">
+                        {[...Array(5)].map((star, index) => {
+                            index += 1;
+                            return (
+                                <FaStar
+                                    key={index}
+                                    className={index <= (hover || rating) ? 'on' : 'off'}
+                                    onClick={() => setRating(index)}
+                                    onMouseEnter={() => setHover(index)}
+                                    onMouseLeave={() => setHover(rating)}
+                                    size={30}
+                                    color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
+                            );
+                        })}
+                    </div>
+                        <div className="buttonCenter">                            <form onSubmit={handlePostRequest}>
+                            <div>
+                                <input
+                                    className="btn btn-primary"
+                                    type="submit"
+                                    value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
+                                    disabled={apiPostLoading === "loading"} />
+                            </div>
+                        </form></div>
+
+                        {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
+                    </>
+                )}
                 {commentsLoading === "success" ? (
-                    <div style={{ padding: 20 }}>
+                    <div className="commentsGrid" style={{ padding: 20 }}>
                         {comments.rows.map((item) => (
                             <><div class="card border-light mb-3 commentCards">
                                 <div class="card-header">01/01/2000</div>
@@ -215,25 +217,25 @@ function ReviewPage() {
                         <span> Page {commentPage} </span>
                         {comments.nextPage == true ? (<button onClick={pageUp}>
                             Next
-                        </button>) : (<div></div>) }
+                        </button>) : (<div></div>)}
 
                     </div>
                 ) : (
-                        <>
-                            {
-                                commentsLoading === "fail" && <><p className="submitErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
-                                    <form>
-                                        <div className="buttonCenter">
-                                            <input
-                                                className="btn btn-primary"
-                                                type="submit"
-                                                value="reload comments"
-                                                disabled={apiPostLoading === "loading"} />
-                                        </div>
-                                    </form></>
-                            }
-                        </>
-                )} 
+                    <>
+                        {
+                            commentsLoading === "fail" && <><p className="submitErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
+                                <form>
+                                    <div className="buttonCenter">
+                                        <input
+                                            className="btn btn-primary"
+                                            type="submit"
+                                            value="reload comments"
+                                            disabled={apiPostLoading === "loading"} />
+                                    </div>
+                                </form></>
+                        }
+                    </>
+                )}
             </div>
 
     }

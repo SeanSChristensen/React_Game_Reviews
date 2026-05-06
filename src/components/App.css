@@ -20,10 +20,18 @@
 }
 
 .buttonCenter {
+    grid-column: 2 !important;
+    grid-row: 4 !important;
+    place-items: center;
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding-top: 10px;
+    justify-content: center;
+}
+
+.commentsGrid {
+    grid-column: 1 !important;
+    grid-row: 5 !important;
+    grid-column: span 3 !important;
 }
 
 
@@ -43,24 +51,23 @@ star-rating .on {
 
 
 .star-rating {
+    grid-column: 2;
+    grid-row: 3;
     display: flex;
-    justify-content: center;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
 }
 
 .gameInfoBox {
     border-radius: 25px;
     background-color: #73AD21;
     padding: 20px;
-    width: 95%;
-    height: 125%;
-    position: absolute;
-    top: 32%;
-    left: 50%;
-    transform: translate(-50%, -18%);
     background-color: #2f199e;
     box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px;
 }
 
 .submitErrorMessage {
@@ -70,10 +77,28 @@ star-rating .on {
 
 .submittedText {
     text-align: center;
+    grid-column: 2 !important;
+    grid-row: 4 !important;
+    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .commentCards {
     background-color: #613ba5;
     color: white;
+}
+
+.gameTitle {
+    grid-column: 1;
+    grid-row: 1;
+    grid-column: span 3;
+}
+
+.gameInformation {
+    grid-column: 1;
+    grid-row: 2;
+    grid-column: span 3;
 }
 
