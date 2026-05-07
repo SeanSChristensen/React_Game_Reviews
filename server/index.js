@@ -50,17 +50,19 @@ app.listen(PORT, () => {
 app.get("/api/gameInfo/:gameName", async (req, res) => {
     const gameName = req.params.gameName;
     var result = {};
+    var response = {}
     try {
         result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
         if (result.rowCount == 0) {
+            console.log("not found")
             res.json({ status: "Game not found" })
         }
         else {
-            result.rows[0]["status"] = "Success"
-            res.json(result.rows[0])
+            response.status = "Success"
+            response.data = result.rows[0]
+            res.json(response)
         }
     } catch (e) {
-        console.log(e)
         result = { status: "error", message: "database error please contact system administrators", error: e }
         res.json(result)
     }
@@ -91,11 +93,9 @@ app.get("/api/comments", async (req, res) => {
         else {
             result["nextPage"] = true
         }
-        console.log(result2)
     } catch (e) {
         result = { status: "fail", error: e }
     }
-    console.log(result)
     res.json(result)
 })
 

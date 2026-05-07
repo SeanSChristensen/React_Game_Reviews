@@ -44,7 +44,7 @@ function Search() {
 function ReviewPage() {
     const { gameName } = useParams();
 
-    const [data, setData] = useState(null);
+    const [gameInfo, setGameInfo] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     const [rating, setRating] = useState(0);
@@ -69,11 +69,10 @@ function ReviewPage() {
                 },
                 body: JSON.stringify({
                     rating: rating,
-                    game_id: data?.game_id
+                    game_id: gameInfo.data.game_id
                 }),
             });
             const result = await response.json();
-            console.log(result);
             if (result.status == "success") {
                 setApiPostLoading("success");
             }
@@ -81,7 +80,6 @@ function ReviewPage() {
                 setApiPostLoading("fail");
             }
         } catch (error) {
-            console.log(error);
             setApiPostLoading("fail");
         } 
     };
@@ -101,19 +99,21 @@ function ReviewPage() {
         fetch(`http://localhost:3000/api/gameInfo/${gameName}`)
             .then(response => response.json())
             .then(json => {
-                setData(json);
+                setGameInfo(json);
                 setIsLoading(false);
             })
     }, []); 
 
     useEffect(() => {
         if (isLoading) { return }
+        else if (gameInfo.status == "Game not found") {
+            setCommentsLoading("None")
+        }
         else {
             fetch(`http://localhost:3000/api/comments`, {
                 method: 'GET',
                 headers: {
-                    //temporary change this to dynamic game id later
-                    'game_id': data?.game_id,
+                    'game_id': gameInfo.data.game_id,
                     'page': commentPage
                 }
             })
@@ -136,21 +136,20 @@ function ReviewPage() {
     let content;
 
     if (isLoading || commentsLoading == "waiting") content = <div>Loading...</div>;
-    else if (data.status == "Game not found") {
+    else if (gameInfo.status == "Game not found") {
         content =
             <div>
                 <h1>Game not found</h1>
             </div>
-    } else if (data.status == "error") {
-        console.log(data.error)
+    } else if (gameInfo.status == "error") {
         content =
             <div>
                 <h1>There was an error returning data to client</h1>
-                <p>{ data.message }</p>
+                <p>{ gameInfo.message }</p>
             </div>
     }
     else {
-        const timestamp = data?.release_date;
+        const timestamp = gameInfo.data.release_date;
         const formattedDate = new Date(timestamp).toLocaleString("en-US",
             {
                 month: "short",
@@ -162,11 +161,11 @@ function ReviewPage() {
             <div className="gameInfoBox">
                 <div className='gameInformation'>                <h1 className='gameTitle'>{gameName}</h1>
                     <p><strong>Release Date:</strong> {formattedDate}</p>
-                    <p><strong>Publisher:</strong> {data?.publisher}</p>
-                    <p><strong>Development Studio:</strong> {data?.development_studio}</p>
+                    <p><strong>Publisher:</strong> {gameInfo.data.publisher}</p>
+                    <p><strong>Development Studio:</strong> {gameInfo.data.development_studio}</p>
 
                     <p><strong>Summary:</strong></p>
-                    <p>{data?.summary}</p></div>
+                    <p>{gameInfo.data.summary}</p></div>
 
                 {apiPostLoading === "success" ? (
                     <p className="submittedText" >Submitted!</p>
