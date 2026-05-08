@@ -45,7 +45,7 @@ function ReviewPage() {
     const { gameName } = useParams();
 
     const [gameInfo, setGameInfo] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [gameInfoLoadingStatus, setGameInfoLoadingStatus] = useState("loading");
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);  
@@ -53,9 +53,9 @@ function ReviewPage() {
     const [commentPage, setCommentPage] = useState(1);
 
     const [comments, setComments] = useState(null);
-    const [commentsLoading, setCommentsLoading] = useState("waiting");
+    const [commentsLoading, setCommentsLoading] = useState("loading");
 
-    const [apiPostLoading, setApiPostLoading] = useState("waiting");
+    const [apiPostLoading, setApiPostLoading] = useState("standby");
     
 
     const handlePostRequest = async (e) => {
@@ -100,12 +100,12 @@ function ReviewPage() {
             .then(response => response.json())
             .then(json => {
                 setGameInfo(json);
-                setIsLoading(false);
+                setGameInfoLoadingStatus("success");
             })
     }, []); 
 
     useEffect(() => {
-        if (isLoading) { return }
+        if (gameInfoLoadingStatus == "loading") { return }
         else if (gameInfo.status == "Game not found") {
             setCommentsLoading("None")
         }
@@ -130,12 +130,12 @@ function ReviewPage() {
                 })
         }
     }
-        , [commentPage, isLoading]); 
+        , [commentPage, gameInfoLoadingStatus]); 
 
 
     let content;
 
-    if (isLoading || commentsLoading == "waiting") content = <div>Loading...</div>;
+    if (gameInfoLoadingStatus == "loading" || commentsLoading == "loading") content = <div>Loading...</div>;
     else if (gameInfo.status == "Game not found") {
         content =
             <div>
@@ -190,8 +190,8 @@ function ReviewPage() {
                                 <input
                                     className="btn btn-primary"
                                     type="submit"
-                                    value={apiPostLoading === "loading" ? "Submitting..." : "Submit"}
-                                    disabled={apiPostLoading === "loading"} />
+                                        value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"}
+                                        disabled={apiPostLoading === "Submitting"} />
                             </div>
                         </form></div>
 
