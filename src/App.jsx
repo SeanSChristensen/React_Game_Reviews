@@ -86,11 +86,13 @@ function ReviewPage() {
 
     const pageUp = async (e) => {
         e.preventDefault();
+        setCommentsLoading("loading")
         setCommentPage(commentPage+1)
     };
 
     const pageDown = async (e) => {
         e.preventDefault();
+        setCommentsLoading("loading")
         setCommentPage(commentPage - 1)
     };
 
@@ -122,6 +124,7 @@ function ReviewPage() {
                     setComments(json)
                     if (json.status == "fail") {
                         setCommentsLoading("fail")
+                        console.log("eee")
                     }
                     else {
                         setCommentsLoading("success")
@@ -190,16 +193,16 @@ function ReviewPage() {
                                 <input
                                     className="btn btn-primary"
                                     type="submit"
-                                        value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"}
-                                        disabled={apiPostLoading === "Submitting"} />
+                                    value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"}
+                                    disabled={apiPostLoading === "Submitting"} />
                             </div>
                         </form></div>
 
                         {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
-                {commentsLoading === "success" ? (
-                    <div className="commentsGrid" style={{ padding: 20 }}>
+                {commentsLoading == "success"
+                    ? (<div className="commentsGrid" style={{ padding: 20 }}>
                         {comments.rows.map((item) => (
                             <><div class="card border-light mb-3 commentCards">
                                 <div class="card-header">01/01/2000</div>
@@ -210,34 +213,21 @@ function ReviewPage() {
                             </div>
                             </>
                         ))}
-                        {commentPage != 1 ? (<button onClick={pageDown}>
+                        {commentPage != 1 ? (<button onClick={pageDown} disabled={commentsLoading == "loading"}>
                             Previous
                         </button>) : (<div></div>)}
                         <span> Page {commentPage} </span>
-                        {comments.nextPage == true ? (<button onClick={pageUp}>
+                        {comments.nextPage == true ? (<button onClick={pageUp} disabled={commentsLoading == "loading"}>
                             Next
                         </button>) : (<div></div>)}
-
-                    </div>
-                ) : (
-                    <>
-                        {
-                            commentsLoading === "fail" && <><p className="submitErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
-                                <form>
-                                    <div className="buttonCenter">
-                                        <input
-                                            className="btn btn-primary"
-                                            type="submit"
-                                            value="reload comments"
-                                            disabled={apiPostLoading === "loading"} />
-                                    </div>
-                                    </form></>
-                        }
-                    </>
-                )}
+                    </div>)
+                    : commentsLoading == "error"
+                        ? <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
+                        : <p className="commentsLoadingMessage">Loading...</p>
+                } 
             </div>
 
-    }
+   }
 
     return (
         <Layout>

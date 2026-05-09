@@ -102,3 +102,22 @@ star-rating .on {
     grid-column: span 3;
 }
 
+.commentsLoadingMessage {
+    grid-column: 1;
+    grid-row: 5;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentsLoadingErrorMessage {
+    grid-column: 1;
+    grid-row: 5;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+
