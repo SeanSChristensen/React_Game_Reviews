@@ -48,7 +48,6 @@ app.listen(PORT, () => {
 })
 
 app.get("/api/gameInfo/:gameName", async (req, res) => {
-    await sleep(2000)
     const gameName = req.params.gameName;
     var result = {};
     var response = {}
