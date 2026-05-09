@@ -122,9 +122,8 @@ function ReviewPage() {
                 .then(response => response.json())
                 .then(json => {
                     setComments(json)
-                    if (json.status == "fail") {
-                        setCommentsLoading("fail")
-                        console.log("eee")
+                    if (json.status == "error") {
+                        setCommentsLoading("error")
                     }
                     else {
                         setCommentsLoading("success")
@@ -202,24 +201,24 @@ function ReviewPage() {
                     </>
                 )}
                 {commentsLoading == "success"
-                    ? (<div className="commentsGrid" style={{ padding: 20 }}>
-                        {comments.rows.map((item) => (
-                            <><div class="card border-light mb-3 commentCards">
-                                <div class="card-header">01/01/2000</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{item.text}</h5>
-                                    <p class="card-text">User1</p>
+                        ? (<div className="commentsGrid" style={{ padding: 20 }}>
+                            {comments.rows.map((item) => (
+                                <><div class="card border-light mb-3 commentCards">
+                                    <div class="card-header">01/01/2000</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{item.text}</h5>
+                                        <p class="card-text">User1</p>
+                                    </div>
                                 </div>
-                            </div>
-                            </>
-                        ))}
-                        {commentPage != 1 ? (<button onClick={pageDown} disabled={commentsLoading == "loading"}>
-                            Previous
-                        </button>) : (<div></div>)}
-                        <span> Page {commentPage} </span>
-                        {comments.nextPage == true ? (<button onClick={pageUp} disabled={commentsLoading == "loading"}>
-                            Next
-                        </button>) : (<div></div>)}
+                                </>
+                            ))}
+                {commentPage != 1 ? (<button onClick={pageDown} disabled={commentsLoading == "loading"}>
+                    Previous
+                </button>) : (<div></div>)}
+                <span> Page {commentPage} </span>
+                {comments.nextPage == true ? (<button onClick={pageUp} disabled={commentsLoading == "loading"}>
+                    Next
+                </button>) : (<div></div>)}
                     </div>)
                     : commentsLoading == "error"
                         ? <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>

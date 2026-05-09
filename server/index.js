@@ -48,6 +48,7 @@ app.listen(PORT, () => {
 })
 
 app.get("/api/gameInfo/:gameName", async (req, res) => {
+    await sleep(2000)
     const gameName = req.params.gameName;
     var result = {};
     var response = {}
@@ -94,7 +95,7 @@ app.get("/api/comments", async (req, res) => {
             result["nextPage"] = true
         }
     } catch (e) {
-        result = { status: "fail", error: e }
+        result = { status: "error", error: e }
     }
     res.json(result)
 })
