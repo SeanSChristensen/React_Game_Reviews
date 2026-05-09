@@ -106,7 +106,7 @@ function ReviewPage() {
 
     useEffect(() => {
         if (gameInfoLoadingStatus == "loading") { return }
-        else if (gameInfo.status == "Game not found") {
+        else if (gameInfo.status == "Game not found" || gameInfo.status=="error") {
             setCommentsLoading("None")
         }
         else {
