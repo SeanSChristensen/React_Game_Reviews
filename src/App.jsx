@@ -135,7 +135,7 @@ function ReviewPage() {
 
     let content;
 
-    if (gameInfoLoadingStatus == "loading" || commentsLoading == "loading") content = <div>Loading...</div>;
+    if (gameInfoLoadingStatus == "loading") content = <div>Loading...</div>;
     else if (gameInfo.status == "Game not found") {
         content =
             <div>
@@ -231,7 +231,7 @@ function ReviewPage() {
                                             value="reload comments"
                                             disabled={apiPostLoading === "loading"} />
                                     </div>
-                                </form></>
+                                    </form></>
                         }
                     </>
                 )}

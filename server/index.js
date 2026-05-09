@@ -105,3 +105,10 @@ app.use((req, res) => {
         message: "The requested endpoint does not exist."
     });
 });
+
+//Sleep function for testing (await sleep(Xms))
+function sleep(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+}
