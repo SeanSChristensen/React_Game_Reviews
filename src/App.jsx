@@ -235,6 +235,22 @@ function ReviewPage() {
     )
 }
 
+let testGameNames = ["game1","game2","game3"]
+
+function List() {
+    return (
+        <Layout>
+            <div className="gamesList">
+                <h2>Games List</h2>
+                <p>List of current game pages</p>
+                <ul>
+                    {testGameNames.map((gameName) => (<li><a href={`http://localhost:5173/Review/${gameName}`}>{gameName}</a></li>))}
+                </ul>
+            </div>
+        </Layout>
+    )
+}
+
 
 export default function App() {
     return (
@@ -243,6 +259,7 @@ export default function App() {
             <Route path="/search" element={<Search />} />
             <Route path="/" element={<Home />} />
             <Route path="/Review/:gameName" element={<ReviewPage />} />
+            <Route path="/list" element={<List />} />
         </Routes>
     );
 }

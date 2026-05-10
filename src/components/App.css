@@ -121,3 +121,12 @@ star-rating .on {
     color: red;
 }
 
+.gamesList {
+    border-radius: 25px;
+    background-color: #73AD21;
+    padding: 20px;
+    background-color: #2f199e;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+    margin: 20px;
+}
+
