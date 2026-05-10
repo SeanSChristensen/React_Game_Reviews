@@ -238,14 +238,35 @@ function ReviewPage() {
 let testGameNames = ["game1","game2","game3"]
 
 function List() {
+    const [gameList, setGameList] = useState(null);
+    const [gameListLoadingStatus, setGameListLoadingStatus] = useState("loading");
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/gameList`)
+            .then(response => response.json())
+            .then(json => {
+                if (json.status == "error") {
+                    setGameListLoadingStatus("error")
+                }
+                else {
+                    setGameList(json)
+                    setGameListLoadingStatus("success")
+                }
+            })
+    })
+
     return (
         <Layout>
             <div className="gamesList">
                 <h2>Games List</h2>
                 <p>List of current game pages</p>
-                <ul>
-                    {testGameNames.map((gameName) => (<li><a href={`http://localhost:5173/Review/${gameName}`}>{gameName}</a></li>))}
-                </ul>
+                {gameListLoadingStatus == "error loading game list please contact system administrators"
+                ? (<p>Error</p>)
+                : gameListLoadingStatus == "loading"
+                    ? (<p>loading games list...</p>)
+                    : <ul>{gameList.data.map((gameName) => (<li><a href={`http://localhost:5173/Review/${gameName.name}`}>{gameName.name}</a></li>))}
+                </ul>}
+
             </div>
         </Layout>
     )

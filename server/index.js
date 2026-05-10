@@ -99,6 +99,23 @@ app.get("/api/comments", async (req, res) => {
     res.json(result)
 })
 
+
+app.get("/api/gameList/", async (req, res) => {
+    var result = {};
+    var response = {};
+    try {
+        result = await runQuery(`select name from public."Game"`);
+        response.status = "Success"
+        response.data = result.rows
+    } catch (e) {
+        response = { status: "error", error: e }
+    }
+    res.json(response)
+})
+
+
+
+
 app.use((req, res) => {
     res.status(404).json({
         error: "Not Found",
