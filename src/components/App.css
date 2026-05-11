@@ -130,3 +130,21 @@ star-rating .on {
     margin: 20px;
 }
 
+.commentLoadingSpinner {
+    grid-column: 1;
+    grid-row: 5;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameInfoLoadingSpinner {
+    grid-column: 1;
+    grid-row: 1;
+    grid-column: span 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

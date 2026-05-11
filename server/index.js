@@ -113,9 +113,6 @@ app.get("/api/gameList/", async (req, res) => {
     res.json(response)
 })
 
-
-
-
 app.use((req, res) => {
     res.status(404).json({
         error: "Not Found",

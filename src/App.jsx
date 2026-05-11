@@ -137,7 +137,13 @@ function ReviewPage() {
 
     let content;
 
-    if (gameInfoLoadingStatus == "loading") content = <div>Loading...</div>;
+    if (gameInfoLoadingStatus == "loading") content =
+        <div className="gameInfoBox">
+            <div class="text-center gameInfoLoadingSpinner">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div></div>;
     else if (gameInfo.status == "Game not found") {
         content =
             <div>
@@ -222,7 +228,11 @@ function ReviewPage() {
                     </div>)
                     : commentsLoading == "error"
                         ? <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
-                        : <p className="commentsLoadingMessage">Loading...</p>
+                        : <div class="text-center commentLoadingSpinner">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>
                 } 
             </div>
 
@@ -234,8 +244,6 @@ function ReviewPage() {
         </Layout>
     )
 }
-
-let testGameNames = ["game1","game2","game3"]
 
 function List() {
     const [gameList, setGameList] = useState(null);
@@ -263,7 +271,11 @@ function List() {
                 {gameListLoadingStatus == "error loading game list please contact system administrators"
                 ? (<p>Error</p>)
                 : gameListLoadingStatus == "loading"
-                    ? (<p>loading games list...</p>)
+                        ? (<div class="text-center">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only"></span>
+                            </div>
+                        </div>)
                     : <ul>{gameList.data.map((gameName) => (<li><a href={`http://localhost:5173/Review/${gameName.name}`}>{gameName.name}</a></li>))}
                 </ul>}
 
