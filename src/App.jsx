@@ -229,10 +229,10 @@ function ReviewPage() {
                     : commentsLoading == "error"
                         ? <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
                         : <div class="text-center commentLoadingSpinner">
-                            <div class="spinner-border" role="status">
-                                <span class="sr-only"></span>
+                                <div class="spinner-border" role="status">
+                                    <span class="sr-only"></span>
+                                </div>
                             </div>
-                        </div>
                 } 
             </div>
 
@@ -284,6 +284,35 @@ function List() {
     )
 }
 
+function Register() {
+
+
+
+
+    return (
+        <Layout>
+            <div className="registerBox">
+                <div className="emailInput">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control" placeholder="name@example.com"/>
+                </div>
+                <div class="passwordInput">
+                    <div class="col-auto">
+                        <label for="inputPassword6" class="col-form-label">Password</label>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"/>
+                    </div>
+                    <div class="col-auto">
+                        <span id="passwordHelpInline" class="form-text passwordRequirementText">
+                            Must be 8-20 characters long.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </Layout>
+    )
+}
 
 export default function App() {
     return (
@@ -293,6 +322,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/Review/:gameName" element={<ReviewPage />} />
             <Route path="/list" element={<List />} />
+            <Route path="/register" element={<Register />} />
         </Routes>
     );
 }

@@ -23,6 +23,9 @@ const Layout = ({ children }) => {
                             <li class="nav-item">
                                 <a class="nav-link NavBarLink" href="/list">List </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link NavBarLink" href="/register">Register </a>
+                            </li>
                         </ul>
                     </div>
                 </div>

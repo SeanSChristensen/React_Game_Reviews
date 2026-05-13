@@ -148,3 +148,31 @@ star-rating .on {
     justify-content: center;
 }
 
+
+.registerBox {
+    border-radius: 25px;
+    background-color: #73AD21;
+    padding: 20px;
+    background-color: #2f199e;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
+.emailInput {
+    grid-column: 1;
+    grid-row: 1;
+    grid-column: span 1;
+}
+
+.passwordInput {
+    grid-column: 1;
+    grid-row: 2;
+    grid-column: span 1;
+}
+
+.passwordRequirementText{
+    color: white;
+}
