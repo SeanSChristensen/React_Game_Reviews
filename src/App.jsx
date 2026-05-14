@@ -337,6 +337,7 @@ function Register() {
                             type="submit"
                             value="Submit"
                             onClick={submitButtonPress}
+                            disabled={password.length < 11 || password.length > 16 ? true : false}
                         />
                     </div>
 
