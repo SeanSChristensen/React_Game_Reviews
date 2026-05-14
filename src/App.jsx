@@ -285,29 +285,61 @@ function List() {
 }
 
 function Register() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
+    const emailChange = (e) => {
+        setEmail(e.target.value)
+    };
 
+    const passwordChange = (e) => {
+        setPassword(e.target.value)
+    };
 
+    const submitButtonPress = () => {
+        console.log(email)
+        console.log(password)
+    };
 
     return (
         <Layout>
             <div className="registerBox">
                 <div className="emailInput">
                     <label class="form-label">Email address</label>
-                    <input type="email" class="form-control" placeholder="name@example.com"/>
+                    <input type="email" class="form-control" placeholder="name@example.com" value={email} onChange={emailChange} />
                 </div>
                 <div class="passwordInput">
                     <div class="col-auto">
                         <label for="inputPassword6" class="col-form-label">Password</label>
                     </div>
                     <div class="col-auto">
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"/>
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" value={password} onChange={passwordChange} />
                     </div>
-                    <div class="col-auto">
-                        <span id="passwordHelpInline" class="form-text passwordRequirementText">
-                            Must be 8-20 characters long.
-                        </span>
+                    {password.length > 16
+                        ? <div class="col-auto">
+                            <span id="passwordHelpInline" class="form-text passwordRequirementText">
+                                Cannot be longer than 15 characters
+                            </span>
+                        </div>
+                        : <></>
+                    }
+                    {password.length < 11
+                        ? <div class="col-auto">
+                            <span id="passwordHelpInline" class="form-text passwordRequirementText">
+                                Must be atleast 10 characters
+                            </span>
+                        </div>
+                        : <></>
+                    }
+                    <div>
+                        <input
+                            className="btn btn-primary"
+                            type="submit"
+                            value="Submit"
+                            onClick={submitButtonPress}
+                        />
                     </div>
+
                 </div>
             </div>
         </Layout>
