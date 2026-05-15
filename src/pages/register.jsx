@@ -18,11 +18,6 @@ export default function Register() {
         setPassword(e.target.value)
     };
 
-    const submitButtonPress = () => {
-        console.log(email)
-        console.log(password)
-    };
-
     return (
         <Layout>
             <div className="registerBox">

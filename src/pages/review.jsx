@@ -60,7 +60,6 @@ export default function ReviewPage() {
     };
 
     useEffect(() => {
-        // 1. Start fetching data when the component mounts
         fetch(`http://localhost:3000/api/gameInfo/${gameName}`)
             .then(response => response.json())
             .then(json => {

@@ -3,11 +3,16 @@
     color: white;
     text-align: left;
     margin-left: 10px;
+    padding-top: 55px;
 }
 
 #customNavBar {
     background-color: #341b71 !important;
     color: white !important;
+    position: fixed;
+    top: 0 ;
+    left:0;
+    width: 100%;
 }
 
 #customSearchButton {

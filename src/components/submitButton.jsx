@@ -1,5 +1,4 @@
 
-
 const SubmitButton = ({ disabled, value, formSubmitFunction, cssClasses }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
