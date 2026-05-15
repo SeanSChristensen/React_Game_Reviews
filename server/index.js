@@ -23,6 +23,7 @@ async function runQuery(queryString) {
 }
 
 app.post('/rating', async (req, res) => {
+    await sleep(2000)
     var result = {};
     try {
         result = await runQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)

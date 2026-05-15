@@ -3,6 +3,7 @@ import { FaStar } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
+import { SubmitButton } from "../components/submitButton"
 
 export default function ReviewPage() {
     const { gameName } = useParams();
@@ -21,10 +22,9 @@ export default function ReviewPage() {
     const [apiPostLoading, setApiPostLoading] = useState("standby");
 
 
-    const handlePostRequest = async (e) => {
-        e.preventDefault();
+    const handlePostRequest = async () => {
         try {
-            setApiPostLoading("loading");
+            setApiPostLoading("Submitting");
             const response = await fetch(`http://localhost:3000/rating`, {
                 method: 'POST',
                 headers: {
@@ -156,16 +156,7 @@ export default function ReviewPage() {
                             );
                         })}
                     </div>
-                        <div className="buttonCenter">                            <form onSubmit={handlePostRequest}>
-                            <div>
-                                <input
-                                    className="btn btn-primary"
-                                    type="submit"
-                                    value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"}
-                                    disabled={apiPostLoading === "Submitting"} />
-                            </div>
-                        </form></div>
-
+                            <SubmitButton disabled={apiPostLoading === "Submitting"} value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"} formSubmitFunction={handlePostRequest} />
                         {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
