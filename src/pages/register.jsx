@@ -1,5 +1,10 @@
 import Layout from "../components/Layout";
 import React, { useState } from 'react';
+import { SubmitButton } from "../components/submitButton"
+
+const placeHolderButtonFunction = () => {
+
+};
 
 export default function Register() {
     const [email, setEmail] = useState("")
@@ -49,13 +54,7 @@ export default function Register() {
                         : <></>
                     }
                     <div>
-                        <input
-                            className="btn btn-primary"
-                            type="submit"
-                            value="Submit"
-                            onClick={submitButtonPress}
-                            disabled={password.length < 11 || password.length > 16 ? true : false}
-                        />
+                        <SubmitButton disabled={password.length < 11 || password.length > 16 ? true : false} value={"submit"} formSubmitFunction={placeHolderButtonFunction} cssClasses="registerButton"/>
                     </div>
 
                 </div>

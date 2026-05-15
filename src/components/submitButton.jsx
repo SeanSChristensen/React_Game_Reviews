@@ -1,13 +1,13 @@
 
 
-const SubmitButton = ({ disabled, value, formSubmitFunction }) => {
+const SubmitButton = ({ disabled, value, formSubmitFunction, cssClasses }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         formSubmitFunction();
     }
 
 	return (
-        <div className="buttonCenter">
+        <div className={cssClasses}>
             <form onSubmit={handleSubmit}>
                 <div>
                     <input

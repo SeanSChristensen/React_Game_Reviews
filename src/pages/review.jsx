@@ -155,8 +155,8 @@ export default function ReviewPage() {
                                     color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
                             );
                         })}
-                    </div>
-                            <SubmitButton disabled={apiPostLoading === "Submitting"} value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"} formSubmitFunction={handlePostRequest} />
+                        </div>
+                            <SubmitButton disabled={apiPostLoading === "Submitting"} value={apiPostLoading === "Submitting" ? "Submitting..." : "Submit"} formSubmitFunction={handlePostRequest} cssClasses={"buttonCenter"} />
                         {apiPostLoading === "fail" && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
