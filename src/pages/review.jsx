@@ -25,7 +25,6 @@ export default function ReviewPage() {
     const [commentPage, setCommentPage] = useState(1);
 
     const [comments, setComments] = useState(null);
-    const [commentsLoading, setCommentsLoading] = useState(STATUS.LOADING);
 
     const [apiPostLoading, setApiPostLoading] = useState(STATUS.IDLE);
 
@@ -57,13 +56,13 @@ export default function ReviewPage() {
 
     const pageUp = async (e) => {
         e.preventDefault();
-        setCommentsLoading(STATUS.LOADING)
+        setComments(null)
         setCommentPage(commentPage + 1)
     };
 
     const pageDown = async (e) => {
         e.preventDefault();
-        setCommentsLoading(STATUS.LOADING)
+        setComments(null)
         setCommentPage(commentPage - 1)
     };
 
@@ -77,10 +76,7 @@ export default function ReviewPage() {
     }, []);
 
     useEffect(() => {
-        if (gameInfoLoadingStatus == STATUS.LOADING) { return }
-        else if (gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) {
-            setCommentsLoading("None")
-        }
+        if (gameInfoLoadingStatus == STATUS.LOADING || gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) { return }
         else {
             fetch(`http://localhost:3000/api/comments`, {
                 method: 'GET',
@@ -93,10 +89,7 @@ export default function ReviewPage() {
                 .then(json => {
                     setComments(json)
                     if (json.status == STATUS.ERROR) {
-                        setCommentsLoading(STATUS.ERROR)
-                    }
-                    else {
-                        setCommentsLoading(STATUS.SUCCESS)
+                        setComments({ status: STATUS.ERROR })
                     }
 
                 })
@@ -109,9 +102,9 @@ export default function ReviewPage() {
 
     if (gameInfoLoadingStatus == STATUS.LOADING) content =
         <div className="gameInfoBox">
-            <div class="text-center gameInfoLoadingSpinner">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only"></span>
+            <div className="text-center gameInfoLoadingSpinner">
+                <div className="spinner-border" role="status">
+                    <span className="sr-only"></span>
                 </div>
             </div></div>;
     else if (gameInfo.status == "Game not found") {
@@ -167,33 +160,33 @@ export default function ReviewPage() {
                             {apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
-                {commentsLoading == STATUS.SUCCESS
-                    ? (<div className="commentsGrid" style={{ padding: 20 }}>
-                        {comments.rows.map((item) => (
-                            <><div class="card border-light mb-3 commentCards">
-                                <div class="card-header">01/01/2000</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">{item.text}</h5>
-                                    <p class="card-text">User1</p>
+                {comments !== null
+	                ? comments.status !== STATUS.ERROR
+                        ? (<div className="commentsGrid" style={{ padding: 20 }}>
+                            {comments.rows.map((item) => (
+                                <><div class="card border-light mb-3 commentCards">
+                                    <div class="card-header">01/01/2000</div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">{item.text}</h5>
+                                        <p class="card-text">User1</p>
+                                    </div>
                                 </div>
-                            </div>
-                            </>
-                        ))}
-                        {commentPage != 1 ? (<button onClick={pageDown} disabled={commentsLoading == STATUS.LOADING}>
-                            Previous
-                        </button>) : (<div></div>)}
-                        <span> Page {commentPage} </span>
-                        {comments.nextPage == true ? (<button onClick={pageUp} disabled={commentsLoading == STATUS.LOADING}>
-                            Next
-                        </button>) : (<div></div>)}
-                    </div>)
-                    : commentsLoading == STATUS.ERROR
-                        ? <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
-                        : <div class="text-center commentLoadingSpinner">
-                            <div class="spinner-border" role="status">
-                                <span class="sr-only"></span>
-                            </div>
+                                </>
+                            ))}
+                            {commentPage != 1 ? (<button onClick={pageDown} disabled={comments == null}>
+                                Previous
+                            </button>) : (<div></div>)}
+                            <span> Page {commentPage} </span>
+                            {comments.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
+                                Next
+                            </button>) : (<div></div>)}
+                        </div>)
+                        : <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
+                    : <div class="text-center commentLoadingSpinner">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only"></span>
                         </div>
+                    </div>
                 }
             </div>
 
