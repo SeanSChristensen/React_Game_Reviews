@@ -1,15 +1,12 @@
 import Layout from "../components/Layout";
 import React, { useState, useEffect } from 'react';
+import setDataFromAPI from "../services/api/GET"
 
 export default function List() {
     const [gameList, setGameList] = useState(null);
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/gameList`)
-            .then(response => response.json())
-            .then(json => {
-                setGameList(json)
-            })
+        setDataFromAPI(`http://localhost:3000/api/gameList`, setGameList, {})
     })
 
     return (

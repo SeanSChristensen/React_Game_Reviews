@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
 import { SubmitButton } from "../components/submitButton"
+import setDataFromAPI from "../services/api/GET"
 
 const STATUS = {
     IDLE: "idle",
@@ -66,34 +67,18 @@ export default function ReviewPage() {
     };
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/gameInfo/${gameName}`)
-            .then(response => response.json())
-            .then(json => {
-                setGameInfo(json);
-            })
+        setDataFromAPI(`http://localhost:3000/api/gameInfo/${gameName}`, setGameInfo, {})
     }, []);
 
     useEffect(() => {
         if (gameInfo == null || gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) { return }
         else {
-            fetch(`http://localhost:3000/api/comments`, {
-                method: 'GET',
-                headers: {
-                    'game_id': gameInfo.data.game_id,
-                    'page': commentPage
-                }
+            setDataFromAPI(`http://localhost:3000/api/comments`, setComments, {
+                'game_id': gameInfo.data.game_id,
+                'page': commentPage
             })
-                .then(response => response.json())
-                .then(json => {
-                    setComments(json)
-                    if (json.status == STATUS.ERROR) {
-                        setComments({ status: STATUS.ERROR })
-                    }
-
-                })
         }
-    }
-        , [commentPage, gameInfo]);
+    }, [commentPage, gameInfo]);
 
 
     let content;
