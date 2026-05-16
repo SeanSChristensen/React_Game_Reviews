@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\components",
+    "\\src\\hooks",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\eslint.config.js",
+  "SelectedNode": "\\src\\pages\\list.jsx",
   "PreviewInSolutionExplorer": false
 }
