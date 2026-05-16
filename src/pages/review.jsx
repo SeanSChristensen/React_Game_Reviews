@@ -17,7 +17,6 @@ export default function ReviewPage() {
     const { gameName } = useParams();
 
     const [gameInfo, setGameInfo] = useState(null);
-    const [gameInfoLoadingStatus, setGameInfoLoadingStatus] = useState(STATUS.LOADING);
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
@@ -71,12 +70,11 @@ export default function ReviewPage() {
             .then(response => response.json())
             .then(json => {
                 setGameInfo(json);
-                setGameInfoLoadingStatus(STATUS.SUCCESS);
             })
     }, []);
 
     useEffect(() => {
-        if (gameInfoLoadingStatus == STATUS.LOADING || gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) { return }
+        if (gameInfo == null || gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) { return }
         else {
             fetch(`http://localhost:3000/api/comments`, {
                 method: 'GET',
@@ -95,12 +93,12 @@ export default function ReviewPage() {
                 })
         }
     }
-        , [commentPage, gameInfoLoadingStatus]);
+        , [commentPage, gameInfo]);
 
 
     let content;
 
-    if (gameInfoLoadingStatus == STATUS.LOADING) content =
+    if (gameInfo == null) content =
         <div className="gameInfoBox">
             <div className="text-center gameInfoLoadingSpinner">
                 <div className="spinner-border" role="status">
