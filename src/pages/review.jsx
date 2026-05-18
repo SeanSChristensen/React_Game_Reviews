@@ -3,8 +3,9 @@ import { FaStar } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
-import { SubmitButton } from "../components/submitButton"
-import setDataFromAPI from "../services/api/GET"
+import { SubmitButton } from "../components/submitButton";
+import setDataFromAPI from "../services/api/GET";
+import postDataWithStatus from "../services/api/POST";
 
 const STATUS = {
     IDLE: "idle",
@@ -28,31 +29,13 @@ export default function ReviewPage() {
 
     const [apiPostLoading, setApiPostLoading] = useState(STATUS.IDLE);
 
-
     const handlePostRequest = async () => {
-        try {
-            setApiPostLoading(STATUS.SUBMITTING);
-            const response = await fetch(`http://localhost:3000/rating`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    rating: rating,
-                    game_id: gameInfo.data.game_id
-                }),
-            });
-            const result = await response.json();
-            if (result.status == STATUS.SUCCESS) {
-                setApiPostLoading(STATUS.SUCCESS);
-            }
-            else {
-                setApiPostLoading(STATUS.ERROR);
-            }
-        } catch (error) {
-            setApiPostLoading(STATUS.ERROR);
-        }
-    };
+        postDataWithStatus(
+            `http://localhost:3000/rating`,
+            setApiPostLoading,
+            { rating: rating, game_id: gameInfo.data.game_id },
+            { 'Content-Type': 'application/json' })
+    }
 
     const pageUp = async (e) => {
         e.preventDefault();
@@ -139,7 +122,9 @@ export default function ReviewPage() {
                             );
                         })}
                         </div>
-                            <SubmitButton disabled={apiPostLoading === STATUS.SUBMITTING} value={apiPostLoading === STATUS.SUBMITTING ? "Submitting..." : "Submit"} formSubmitFunction={handlePostRequest} cssClasses={"buttonCenter"} />
+                            <SubmitButton disabled={apiPostLoading === STATUS.SUBMITTING} value={apiPostLoading === STATUS.SUBMITTING ? "Submitting..." : "Submit"} formSubmitFunction=
+                                {handlePostRequest}
+                                cssClasses={"buttonCenter"} />
                             {apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
