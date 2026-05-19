@@ -6,14 +6,8 @@ import Layout from "../components/Layout";
 import { SubmitButton } from "../components/submitButton";
 import setDataFromAPI from "../services/api/GET";
 import postDataWithStatus from "../services/api/POST";
+import STATUS from "../services/api/status";
 
-const STATUS = {
-    IDLE: "idle",
-    LOADING: "loading",
-    SUCCESS: "success",
-    ERROR: "error",
-    SUBMITTING: "submitting"
-}
 
 export default function ReviewPage() {
     const { gameName } = useParams();

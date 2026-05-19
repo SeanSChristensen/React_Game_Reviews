@@ -1,5 +1,4 @@
-//location for API POST functions
-
+import STATUS from "./status";
 
 export default async function postDataWithStatus(url, setFunction, requestBody, requestHeaders) {
     try {
@@ -10,13 +9,13 @@ export default async function postDataWithStatus(url, setFunction, requestBody, 
             body:  JSON.stringify(requestBody)  
         })
         const result = await response.json()
-        if (result.status == "success") {
-            setFunction("success");
+        if (result.status == STATUS.SUCCESS) {
+            setFunction(STATUS.SUCCESS);
         }
         else {
-            setFunction("error");
+            setFunction(STATUS.ERROR);
         }
     } catch (error) {
-        setFunction("error");
+        setFunction(STATUS.ERROR);
     }
 }
