@@ -1,3 +1,5 @@
 cd /d D:\solutions\my-react-app && npm run dev
 
 cd /d D:\solutions\my-react-app\server && npm run dev
+
+cd /d D:\KeyCloak\keycloak-26.6.2\bin && kc.bat start-dev

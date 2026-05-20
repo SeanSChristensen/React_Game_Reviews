@@ -1,0 +1,7 @@
+This isn't prod so does not matter : )
+
+username: SeanC
+password: password
+email: admin@localhost
+first name: Sean
+last name: Chris

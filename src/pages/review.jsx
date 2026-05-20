@@ -93,8 +93,9 @@ export default function ReviewPage() {
                 <h1 className='gameTitle'>{gameName}</h1>
                 <div className="gameAverageRating">
                 <h3>Average Rating</h3>
-                    {[...Array(5)].map((star, index) => {
+                    {[...Array(5)].map((star, index, rating) => {
                         index += 1;
+                        rating = 3;
                         return (
                             <FaStar
                             key={index}
