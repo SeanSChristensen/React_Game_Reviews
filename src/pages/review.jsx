@@ -90,7 +90,20 @@ export default function ReviewPage() {
 
         content =
             <div className="gameInfoBox">
-                <div className='gameInformation'>                <h1 className='gameTitle'>{gameName}</h1>
+                <h1 className='gameTitle'>{gameName}</h1>
+                <div className="gameAverageRating">
+                <h3>Average Rating</h3>
+                    {[...Array(5)].map((star, index) => {
+                        index += 1;
+                        return (
+                            <FaStar
+                            key={index}
+                            size={30}
+                            className={index <= (hover || rating) ? 'on' : 'off'}
+                            color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'}/>
+                    );
+                })}</div>
+                <div className='gameInformation'>
                     <p><strong>Release Date:</strong> {formattedDate}</p>
                     <p><strong>Publisher:</strong> {gameInfo.data.publisher}</p>
                     <p><strong>Development Studio:</strong> {gameInfo.data.development_studio}</p>

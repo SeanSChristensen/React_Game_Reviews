@@ -63,17 +63,6 @@ star-rating .on {
     justify-content: center;
 }
 
-.gameInfoBox {
-    border-radius: 25px;
-    background-color: #73AD21;
-    padding: 20px;
-    background-color: #2f199e;
-    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 20px;
-}
 
 .submitErrorMessage {
     color: red;
@@ -95,16 +84,35 @@ star-rating .on {
     color: white;
 }
 
+.gameInfoBox {
+    border-radius: 25px;
+    background-color: #73AD21;
+    padding: 20px;
+    background-color: #2f199e;
+    box-shadow: 8.0px 16.0px 16.0px hsl(0deg 0% 0% / 0.25);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 20px;
+}
+
 .gameTitle {
     grid-column: 1;
     grid-row: 1;
-    grid-column: span 3;
+    grid-column: span 2;
 }
 
 .gameInformation {
     grid-column: 1;
     grid-row: 2;
     grid-column: span 3;
+}
+
+.gameAverageRating {
+    grid-column: 3;
+    grid-row: 1;
+    grid-column: span 2;
+    text-align: right;
 }
 
 .commentsLoadingMessage {
