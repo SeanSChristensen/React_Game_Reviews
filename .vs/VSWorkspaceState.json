@@ -1,13 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\server",
     "\\src",
     "\\src\\components",
-    "\\src\\hooks",
     "\\src\\pages",
     "\\src\\services",
     "\\src\\services\\api"
   ],
+  "SelectedNode": "\\src\\services\\api\\POST.jsx",
   "PreviewInSolutionExplorer": false
 }
