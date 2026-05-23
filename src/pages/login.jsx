@@ -4,24 +4,21 @@ import { SubmitButton } from "../components/submitButton"
 import STATUS from "../services/api/status";
 
 
-async function postDataWithStatus(url, setFunction, requestBody, requestHeaders) {
+async function postDataWithStatus(url, requestBody, requestHeaders) {
     try {
-        setFunction("submitting")
         const response = await fetch(url, {
             method: 'POST',
             headers: requestHeaders,
             body: requestBody
         })
         const result = await response.json()
-        console.log(response.status)
-        if (response.status != 200) {
-            setFunction("invalid")
+        if (response.status == 200) {
+            localStorage.setItem("token", result.access_token)
         }
-        else {
-            setFunction(result.access_token)
-        }
+        return response
     } catch (error) {
-        setFunction(STATUS.ERROR);
+        console.log(error)
+        return error
     }
 }
 
@@ -34,16 +31,18 @@ export default function Login() {
     const [token, setToken] = useState("")
 
     const handlePostRequest = async () => {
-        postDataWithStatus(
+        const result = await postDataWithStatus(
             `http://localhost:8080/realms/my-react-app/protocol/openid-connect/token`,
-            setToken, `grant_type=password&client_id=my-react-app&username=${userName}&password=${password}`,
+            `grant_type=password&client_id=my-react-app&username=${userName}&password=${password}`,
             { 'Content-Type': 'application/x-www-form-urlencoded' }
         )
+        if (result.status == 200) {
+            setToken("success")
+        }
+        else {
+            setToken("fail")
+        }
     }
-
-    useEffect(() => {
-        localStorage.setItem("token",token)
-    }, [token]);
 
 
     const emailChange = (e) => {

@@ -3,32 +3,40 @@
   "WorkspaceRootPath": "D:\\solutions\\my-react-app\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\server\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\login.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\services\\api\\POST.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\api\\POST.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\server\\keycloak.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\keycloak.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\pages\\review.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\review.jsx||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\components\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\services\\api\\status.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\api\\status.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\keycloak\\AdminDetails.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:keycloak\\AdminDetails.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\components\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\RunInstructions||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RunInstructions||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\services\\api\\status.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\api\\status.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\services\\api\\POST.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\services\\api\\POST.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\keycloak\\AdminDetails.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:keycloak\\AdminDetails.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\components\\Layout.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -79,10 +87,6 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\pages\\home.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\server\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:server\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\solutions\\my-react-app\\src\\components\\submitButton.jsx||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\components\\submitButton.jsx||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
@@ -114,11 +118,51 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "login.jsx",
+              "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\login.jsx",
+              "RelativeDocumentMoniker": "src\\pages\\login.jsx",
+              "ToolTip": "D:\\solutions\\my-react-app\\src\\pages\\login.jsx",
+              "RelativeToolTip": "src\\pages\\login.jsx",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-05-22T11:02:26.061Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "index.js",
+              "DocumentMoniker": "D:\\solutions\\my-react-app\\server\\index.js",
+              "RelativeDocumentMoniker": "server\\index.js",
+              "ToolTip": "D:\\solutions\\my-react-app\\server\\index.js",
+              "RelativeToolTip": "server\\index.js",
+              "ViewState": "AgIAADsAAAAAAAAAAAAQwB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-05-18T09:50:06.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "keycloak.js",
+              "DocumentMoniker": "D:\\solutions\\my-react-app\\server\\keycloak.js",
+              "RelativeDocumentMoniker": "server\\keycloak.js",
+              "ToolTip": "D:\\solutions\\my-react-app\\server\\keycloak.js",
+              "RelativeToolTip": "server\\keycloak.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2026-05-23T04:28:01.585Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "status.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\services\\api\\status.jsx",
               "RelativeDocumentMoniker": "src\\services\\api\\status.jsx",
@@ -127,25 +171,24 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-05-19T12:35:24.261Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "review.jsx",
-              "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\review.jsx",
-              "RelativeDocumentMoniker": "src\\pages\\review.jsx",
-              "ToolTip": "D:\\solutions\\my-react-app\\src\\pages\\review.jsx",
-              "RelativeToolTip": "src\\pages\\review.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T08:59:45.508Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "review.jsx",
+              "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\review.jsx",
+              "RelativeDocumentMoniker": "src\\pages\\review.jsx",
+              "ToolTip": "D:\\solutions\\my-react-app\\src\\pages\\review.jsx",
+              "RelativeToolTip": "src\\pages\\review.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-05-15T08:59:45.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "App.css",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\components\\App.css",
               "RelativeDocumentMoniker": "src\\components\\App.css",
@@ -154,12 +197,11 @@
               "ViewState": "AgIAAFIAAAAAAAAAAAAAwHIAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-04-14T02:37:37.634Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "POST.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\services\\api\\POST.jsx",
               "RelativeDocumentMoniker": "src\\services\\api\\POST.jsx",
@@ -168,21 +210,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
               "WhenOpened": "2026-05-18T10:17:49.983Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "login.jsx",
-              "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\login.jsx",
-              "RelativeDocumentMoniker": "src\\pages\\login.jsx",
-              "ToolTip": "D:\\solutions\\my-react-app\\src\\pages\\login.jsx",
-              "RelativeToolTip": "src\\pages\\login.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-22T11:02:26.061Z",
-              "IsPinned": true,
               "EditorCaption": ""
             },
             {
@@ -195,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "AdminDetails.txt",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\keycloak\\AdminDetails.txt",
               "RelativeDocumentMoniker": "keycloak\\AdminDetails.txt",
@@ -208,20 +235,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RunInstructions",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\RunInstructions",
               "RelativeDocumentMoniker": "RunInstructions",
               "ToolTip": "D:\\solutions\\my-react-app\\RunInstructions",
               "RelativeToolTip": "RunInstructions",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2026-04-14T05:24:10.475Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "search.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\search.jsx",
               "RelativeDocumentMoniker": "src\\pages\\search.jsx",
@@ -229,11 +256,12 @@
               "RelativeToolTip": "src\\pages\\search.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T09:00:19.263Z"
+              "WhenOpened": "2026-05-15T09:00:19.263Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "main.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\main.jsx",
               "RelativeDocumentMoniker": "src\\main.jsx",
@@ -241,11 +269,12 @@
               "RelativeToolTip": "src\\main.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-04-14T03:13:30.199Z"
+              "WhenOpened": "2026-04-14T03:13:30.199Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "package.json",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\package.json",
               "RelativeDocumentMoniker": "package.json",
@@ -253,11 +282,12 @@
               "RelativeToolTip": "package.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-14T02:33:50.775Z"
+              "WhenOpened": "2026-04-14T02:33:50.775Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "eslint.config.js",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\eslint.config.js",
               "RelativeDocumentMoniker": "eslint.config.js",
@@ -265,11 +295,12 @@
               "RelativeToolTip": "eslint.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-05-15T10:49:53.101Z"
+              "WhenOpened": "2026-05-15T10:49:53.101Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "Layout.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\components\\Layout.jsx",
               "RelativeDocumentMoniker": "src\\components\\Layout.jsx",
@@ -277,11 +308,12 @@
               "RelativeToolTip": "src\\components\\Layout.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-04-15T10:31:09.068Z"
+              "WhenOpened": "2026-04-15T10:31:09.068Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "App.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\App.jsx",
               "RelativeDocumentMoniker": "src\\App.jsx",
@@ -289,11 +321,12 @@
               "RelativeToolTip": "src\\App.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-04-14T02:37:19.295Z"
+              "WhenOpened": "2026-04-14T02:37:19.295Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "vite.config.js",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\vite.config.js",
               "RelativeDocumentMoniker": "vite.config.js",
@@ -301,11 +334,12 @@
               "RelativeToolTip": "vite.config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-04-14T02:37:29.808Z"
+              "WhenOpened": "2026-04-14T02:37:29.808Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "home.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\home.jsx",
               "RelativeDocumentMoniker": "src\\pages\\home.jsx",
@@ -313,11 +347,12 @@
               "RelativeToolTip": "src\\pages\\home.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T08:35:04.689Z"
+              "WhenOpened": "2026-05-15T08:35:04.689Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "register.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\register.jsx",
               "RelativeDocumentMoniker": "src\\pages\\register.jsx",
@@ -325,11 +360,12 @@
               "RelativeToolTip": "src\\pages\\register.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T09:01:01.183Z"
+              "WhenOpened": "2026-05-15T09:01:01.183Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "package-lock.json",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\package-lock.json",
               "RelativeDocumentMoniker": "package-lock.json",
@@ -337,11 +373,12 @@
               "RelativeToolTip": "package-lock.json",
               "ViewState": "AgIAAHgIAAAAAAAAAAAiwNkDAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-05-20T09:55:36.858Z"
+              "WhenOpened": "2026-05-20T09:55:36.858Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "index.html",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\index.html",
               "RelativeDocumentMoniker": "index.html",
@@ -349,11 +386,12 @@
               "RelativeToolTip": "index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-05-15T09:27:44.602Z"
+              "WhenOpened": "2026-05-15T09:27:44.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "about.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\about.jsx",
               "RelativeDocumentMoniker": "src\\pages\\about.jsx",
@@ -361,11 +399,12 @@
               "RelativeToolTip": "src\\pages\\about.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T09:01:35.036Z"
+              "WhenOpened": "2026-05-15T09:01:35.036Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "list.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\pages\\list.jsx",
               "RelativeDocumentMoniker": "src\\pages\\list.jsx",
@@ -373,11 +412,12 @@
               "RelativeToolTip": "src\\pages\\list.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T09:00:31.233Z"
+              "WhenOpened": "2026-05-15T09:00:31.233Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "GET.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\services\\api\\GET.jsx",
               "RelativeDocumentMoniker": "src\\services\\api\\GET.jsx",
@@ -385,23 +425,12 @@
               "RelativeToolTip": "src\\services\\api\\GET.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T09:28:57.721Z"
+              "WhenOpened": "2026-05-15T09:28:57.721Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "index.js",
-              "DocumentMoniker": "D:\\solutions\\my-react-app\\server\\index.js",
-              "RelativeDocumentMoniker": "server\\index.js",
-              "ToolTip": "D:\\solutions\\my-react-app\\server\\index.js",
-              "RelativeToolTip": "server\\index.js",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACAAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2026-05-18T09:50:06.296Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "submitButton.jsx",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\src\\components\\submitButton.jsx",
               "RelativeDocumentMoniker": "src\\components\\submitButton.jsx",
@@ -409,11 +438,12 @@
               "RelativeToolTip": "src\\components\\submitButton.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-05-15T10:09:46.829Z"
+              "WhenOpened": "2026-05-15T10:09:46.829Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "README.md",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -421,11 +451,12 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2026-05-16T05:19:24.025Z"
+              "WhenOpened": "2026-05-16T05:19:24.025Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "package-lock.json",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\server\\package-lock.json",
               "RelativeDocumentMoniker": "server\\package-lock.json",
@@ -433,11 +464,12 @@
               "RelativeToolTip": "server\\package-lock.json",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-15T10:14:03.884Z"
+              "WhenOpened": "2026-04-15T10:14:03.884Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "package.json",
               "DocumentMoniker": "D:\\solutions\\my-react-app\\server\\package.json",
               "RelativeDocumentMoniker": "server\\package.json",
@@ -445,7 +477,8 @@
               "RelativeToolTip": "server\\package.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-14T04:36:21.482Z"
+              "WhenOpened": "2026-04-14T04:36:21.482Z",
+              "EditorCaption": ""
             }
           ]
         }
