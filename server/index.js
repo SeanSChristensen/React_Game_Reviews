@@ -12,6 +12,8 @@ const pool = new Pool({
     port: 5432,
 });
 
+const KeycloakJsonWebKeySet = getKeycloakJsonWebKeySet();
+
 const app = express();
 const PORT = 3000;
 app.use(cors())
@@ -30,9 +32,16 @@ function getKeycloakJsonWebKeySet() {
 }
 
 
-async function verifyToken(token, keycloakJsonWebKeySet) {
-    const result = await jose.jwtVerify(token, keycloakJsonWebKeySet, { issuer: 'http://localhost:8080/realms/my-react-app' })
-    return result;
+async function isTokenValid(token) {
+    try {
+        await jose.jwtVerify(token, KeycloakJsonWebKeySet, { issuer: 'http://localhost:8080/realms/my-react-app' })
+        console.log("valid")
+        return true
+    }
+    catch {
+        console.log("invalid")
+        return false
+    }
 }
 
 
@@ -65,21 +74,28 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     const gameName = req.params.gameName;
     var result = {};
     var response = {}
-    try {
-        result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
-        if (result.rowCount == 0) {
-            console.log("not found")
-            res.json({ status: "Game not found" })
-        }
-        else {
-            response.status = "Success"
-            response.data = result.rows[0]
-            res.json(response)
-        }
-    } catch (e) {
-        result = { status: "error", message: "database error please contact system administrators", error: e }
+    if (await isTokenValid(req.headers.token) == false) {
+        result = { status: "error", message: "database error please contact system administrators" }
         res.json(result)
     }
+    else {
+        try {
+            result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
+            if (result.rowCount == 0) {
+                console.log("not found")
+                res.json({ status: "Game not found" })
+            }
+            else {
+                response.status = "Success"
+                response.data = result.rows[0]
+                res.json(response)
+            }
+        } catch (e) {
+            result = { status: "error", message: "database error please contact system administrators", error: e }
+            res.json(result)
+        }
+    }
+
 })
 
 app.get("/api/averageRating", async (req, res) => {

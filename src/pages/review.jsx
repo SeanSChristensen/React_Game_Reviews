@@ -44,7 +44,7 @@ export default function ReviewPage() {
     };
 
     useEffect(() => {
-        setDataFromAPI(`http://localhost:3000/api/gameInfo/${gameName}`, setGameInfo, {})
+        setDataFromAPI(`http://localhost:3000/api/gameInfo/${gameName}`, setGameInfo, { token: localStorage.getItem("token") })
     }, []);
 
     useEffect(() => {
