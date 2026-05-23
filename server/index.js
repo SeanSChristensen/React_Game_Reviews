@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const { Pool } = require('pg');
+const jose = require("jose");
+
 
 const pool = new Pool({
     user: 'postgres',
@@ -21,6 +23,18 @@ async function runQuery(queryString) {
     const res = await pool.query(queryString)
     return res
 }
+
+function getKeycloakJsonWebKeySet() {
+    const result = jose.createRemoteJWKSet(new URL('http://localhost:8080/realms/my-react-app/protocol/openid-connect/certs'))
+    return result
+}
+
+
+async function verifyToken(token, keycloakJsonWebKeySet) {
+    const result = await jose.jwtVerify(token, keycloakJsonWebKeySet, { issuer: 'http://localhost:8080/realms/my-react-app' })
+    return result;
+}
+
 
 app.post('/rating', async (req, res) => {
     var result = {};
