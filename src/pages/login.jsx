@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SubmitButton } from "../components/submitButton"
 import STATUS from "../services/api/status";
 
@@ -40,6 +40,10 @@ export default function Login() {
             { 'Content-Type': 'application/x-www-form-urlencoded' }
         )
     }
+
+    useEffect(() => {
+        localStorage.setItem("token",token)
+    }, [token]);
 
 
     const emailChange = (e) => {
