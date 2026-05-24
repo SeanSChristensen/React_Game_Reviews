@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\server"
+    "\\server",
+    "\\src",
+    "\\src\\pages"
   ],
   "SelectedNode": "\\RunInstructions",
   "PreviewInSolutionExplorer": false
