@@ -124,7 +124,8 @@ app.get("/api/comments", async (req, res) => {
         }
     } catch (e) {
         result = { status: "error", error: e }
-        res.status(500)
+            res.status(500).json({ status: "error", error: e })
+        }
     }
     res.json(result)
 })
