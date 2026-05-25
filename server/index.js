@@ -74,22 +74,21 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     var response = {}
     if (await isTokenValid(req.headers.token) == false) {
         res.status(401).json({
-            status: "error", message: "unauthorised"
+            message: "unauthorised"
         });
     }
     else {
         try {
             result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
             if (result.rowCount == 0) {
-                res.status(404).json({ status: "Game not found" });
+                res.status(404).json({ message: "Game not found" });
             }
             else {
-                response.status = "Success"
                 response.data = result.rows[0]
                 res.status(200).json(response)
             }
         } catch (e) {
-            result = { status: "error", message: "database error please contact system administrators", error: e }
+            result = { message: "database error please contact system administrators", error: e }
             res.status(500).json(result)
         }
     }
@@ -111,24 +110,24 @@ app.get("/api/averageRating", async (req, res) => {
 app.get("/api/comments", async (req, res) => {
     var result = {};
     var result2;
-    try {
-        result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
-        result2 = await runQuery(`select count(game_id) from public.comment where game_id = '${req.headers.game_id}'`);
-        result["status"] = "Success"
-        res.status(200)
-        if (req.headers.page * 5 >= result2.rows[0].count) {
-            result["nextPage"] = false
-        }
-        else {
-            result["nextPage"] = true
-        }
-    } catch (e) {
-        result = { status: "error", error: e }
+        try {
+            result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
+            result2 = await runQuery(`select count(game_id) from public.comment where game_id = '${req.headers.game_id}'`);
+            result["status"] = "Success"
+            res.status(200)
+            if (req.headers.page * 5 >= result2.rows[0].count) {
+                result["nextPage"] = false
+            }
+            else {
+                result["nextPage"] = true
+            }
+        } catch (e) {
+            result = { status: "error", error: e }
             res.status(500).json({ status: "error", error: e })
         }
-    }
     res.json(result)
-})
+    }   
+)
 
 
 app.get("/api/gameList/", async (req, res) => {

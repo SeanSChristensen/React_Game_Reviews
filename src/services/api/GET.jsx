@@ -1,12 +1,10 @@
 
-export default function setDataFromAPI(url, setFunction, requestHeaders) {
-    fetch(url, {
+export default async function setDataFromAPI(url, setFunction, requestHeaders) {
+    const response = await fetch(url, {
         method: 'GET',
         headers: requestHeaders
     })
-        .then(response => response.json())
-        .then(json => {
-            setFunction(json)
-        })
-
+    const data = await response.json()
+    data.status = response.status;
+    setFunction(data)
 }

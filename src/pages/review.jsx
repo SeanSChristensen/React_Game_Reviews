@@ -28,7 +28,10 @@ export default function ReviewPage() {
             `http://localhost:3000/rating`,
             setApiPostLoading,
             { rating: rating, game_id: gameInfo.data.game_id },
-            { 'Content-Type': 'application/json' })
+            {
+                'Content-Type': 'application/json',
+                 token: localStorage.getItem("token") 
+            })
     }
 
     const pageUp = async (e) => {
@@ -48,11 +51,12 @@ export default function ReviewPage() {
     }, []);
 
     useEffect(() => {
-        if (gameInfo == null || gameInfo.status == "Game not found" || gameInfo.status == STATUS.ERROR) { return }
+        if (gameInfo == null || gameInfo.status == 404 || gameInfo.status == 505 || gameInfo.status == 401) { return }
         else {
             setDataFromAPI(`http://localhost:3000/api/comments`, setComments, {
                 'game_id': gameInfo.data.game_id,
-                'page': commentPage
+                'page': commentPage,
+                token: localStorage.getItem("token")
             })
         }
     }, [commentPage, gameInfo]);
@@ -66,13 +70,20 @@ export default function ReviewPage() {
                 <div className="spinner-border" role="status">
                     <span className="sr-only"></span>
                 </div>
-            </div></div>;
-    else if (gameInfo.status == "Game not found") {
+            </div>
+        </div>;
+    else if (gameInfo.status == 401) {
+        content =
+            <div>
+                <a href="http://localhost:5173/Login">Unauthorized please log in again</a>
+            </div>
+    }
+    else if (gameInfo.status == 404) {
         content =
             <div>
                 <h1>Game not found</h1>
             </div>
-    } else if (gameInfo.status == STATUS.ERROR) {
+    } else if (gameInfo.status == 500) {
         content =
             <div>
                 <h1>There was an error returning data to client</h1>
@@ -137,7 +148,7 @@ export default function ReviewPage() {
                     </>
                 )}
                 {comments !== null
-	                ? comments.status !== STATUS.ERROR
+	                ? comments.status !== 500
                         ? (<div className="commentsGrid" style={{ padding: 20 }}>
                             {comments.rows.map((item) => (
                                 <><div class="card border-light mb-3 commentCards">
