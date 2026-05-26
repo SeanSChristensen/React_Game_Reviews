@@ -4,22 +4,40 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
 import { SubmitButton } from "../components/submitButton";
-import setDataFromAPI from "../services/api/GET";
 import postDataWithStatus from "../services/api/POST";
 import STATUS from "../services/api/status";
 
 
+async function ApiFetchHandler(url, requestHeaders, requestBody) {
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: requestHeaders,
+            body: JSON.stringify(requestBody)
+        })
+        const result = await response.json()
+        if (response.ok) {
+            return { loading: false, data: result , error: null}
+        }
+        else {
+            return { loading: false, data: null, error: result.error }
+        }
+    } catch (e) {
+        console.log(e)
+        return { loading: false, data: null, error: "network error" }
+    }
+}
+
 export default function ReviewPage() {
     const { gameName } = useParams();
 
-    const [gameInfo, setGameInfo] = useState(null);
+    const [gameInfo, setGameInfo] = useState({ loading: true, data: null, error: null });
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
 
     const [commentPage, setCommentPage] = useState(1);
-
-    const [comments, setComments] = useState(null);
+    const [comments, setComments] = useState({ loading: true, data: null, error: null });
 
     const [apiPostLoading, setApiPostLoading] = useState(STATUS.IDLE);
 
@@ -30,41 +48,60 @@ export default function ReviewPage() {
             { rating: rating, game_id: gameInfo.data.game_id },
             {
                 'Content-Type': 'application/json',
-                 token: localStorage.getItem("token") 
+                token: localStorage.getItem("token")
             })
     }
 
     const pageUp = async (e) => {
         e.preventDefault();
-        setComments(null)
+        setComments({ loading: true, data: null, error: null })
         setCommentPage(commentPage + 1)
     };
 
     const pageDown = async (e) => {
         e.preventDefault();
-        setComments(null)
+        setComments({ loading: true, data: null, error: null })
         setCommentPage(commentPage - 1)
     };
 
-    useEffect(() => {
-        setDataFromAPI(`http://localhost:3000/api/gameInfo/${gameName}`, setGameInfo, { token: localStorage.getItem("token") })
-    }, []);
 
     useEffect(() => {
-        if (gameInfo == null || gameInfo.status == 404 || gameInfo.status == 505 || gameInfo.status == 401) { return }
-        else {
-            setDataFromAPI(`http://localhost:3000/api/comments`, setComments, {
-                'game_id': gameInfo.data.game_id,
-                'page': commentPage,
-                token: localStorage.getItem("token")
-            })
+        async function loadGameInfo() {
+            const result = await ApiFetchHandler(
+                `http://localhost:3000/api/gameInfo/${gameName}`,
+                {
+                    token: localStorage.getItem("token")
+                }
+            )
+
+            setGameInfo(result)
         }
-    }, [commentPage, gameInfo]);
+
+        loadGameInfo()
+    }, [gameName])
+
+    useEffect(() => {
+        async function loadCommentInfo() {
+            const result = await ApiFetchHandler(
+                `http://localhost:3000/api/comments`,
+                {
+                    'game_id': gameInfo.data.data.game_id,
+                    'page': commentPage,
+                    token: localStorage.getItem("token")
+                }
+            )
+            setComments(result)
+        }
+
+        if (gameInfo.data) {
+            loadCommentInfo()
+        }
+    }, [commentPage, gameInfo])
 
 
     let content;
 
-    if (gameInfo == null) content =
+    if (gameInfo.loading) content =
         <div className="gameInfoBox">
             <div className="text-center gameInfoLoadingSpinner">
                 <div className="spinner-border" role="status">
@@ -72,26 +109,14 @@ export default function ReviewPage() {
                 </div>
             </div>
         </div>;
-    else if (gameInfo.status == 401) {
+    else if (gameInfo.error) {
         content =
             <div>
-                <a href="http://localhost:5173/Login">Unauthorized please log in again</a>
-            </div>
-    }
-    else if (gameInfo.status == 404) {
-        content =
-            <div>
-                <h1>Game not found</h1>
-            </div>
-    } else if (gameInfo.status == 500) {
-        content =
-            <div>
-                <h1>There was an error returning data to client</h1>
-                <p>{gameInfo.message}</p>
+                <p>{gameInfo.error}</p>
             </div>
     }
     else {
-        const timestamp = gameInfo.data.release_date;
+        const timestamp = gameInfo.data.data.release_date;
         const formattedDate = new Date(timestamp).toLocaleString("en-US",
             {
                 month: "short",
@@ -117,11 +142,11 @@ export default function ReviewPage() {
                 })}</div>
                 <div className='gameInformation'>
                     <p><strong>Release Date:</strong> {formattedDate}</p>
-                    <p><strong>Publisher:</strong> {gameInfo.data.publisher}</p>
-                    <p><strong>Development Studio:</strong> {gameInfo.data.development_studio}</p>
+                    <p><strong>Publisher:</strong> {gameInfo.data.data.publisher}</p>
+                    <p><strong>Development Studio:</strong> {gameInfo.data.data.development_studio}</p>
 
                     <p><strong>Summary:</strong></p>
-                    <p>{gameInfo.data.summary}</p></div>
+                    <p>{gameInfo.data.data.summary}</p></div>
 
                 {apiPostLoading === STATUS.SUCCESS ? (
                     <p className="submittedText" >Submitted!</p>
@@ -147,10 +172,10 @@ export default function ReviewPage() {
                             {apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
                     </>
                 )}
-                {comments !== null
-	                ? comments.status !== 500
+                {!comments.loading
+	                ? !comments.error
                         ? (<div className="commentsGrid" style={{ padding: 20 }}>
-                            {comments.rows.map((item) => (
+                            {comments.data.data.rows.map((item) => (
                                 <><div class="card border-light mb-3 commentCards">
                                     <div class="card-header">01/01/2000</div>
                                     <div class="card-body">
@@ -164,7 +189,7 @@ export default function ReviewPage() {
                                 Previous
                             </button>) : (<div></div>)}
                             <span> Page {commentPage} </span>
-                            {comments.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
+                            {comments.data.data.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
                                 Next
                             </button>) : (<div></div>)}
                         </div>)

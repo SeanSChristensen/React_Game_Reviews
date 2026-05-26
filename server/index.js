@@ -74,21 +74,21 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     var response = {}
     if (await isTokenValid(req.headers.token) == false) {
         res.status(401).json({
-            message: "unauthorised"
+            error: "unauthorised"
         });
     }
     else {
         try {
             result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
             if (result.rowCount == 0) {
-                res.status(404).json({ message: "Game not found" });
+                res.status(404).json({ error: "Game not found" });
             }
             else {
                 response.data = result.rows[0]
                 res.status(200).json(response)
             }
         } catch (e) {
-            result = { message: "database error please contact system administrators", error: e }
+            result = { error: "database error please contact system administrators" }
             res.status(500).json(result)
         }
     }
@@ -113,7 +113,6 @@ app.get("/api/comments", async (req, res) => {
         try {
             result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
             result2 = await runQuery(`select count(game_id) from public.comment where game_id = '${req.headers.game_id}'`);
-            result["status"] = "Success"
             res.status(200)
             if (req.headers.page * 5 >= result2.rows[0].count) {
                 result["nextPage"] = false
@@ -121,11 +120,10 @@ app.get("/api/comments", async (req, res) => {
             else {
                 result["nextPage"] = true
             }
+            res.json({ data: result })
         } catch (e) {
-            result = { status: "error", error: e }
-            res.status(500).json({ status: "error", error: e })
+            res.status(500).json({ error: "internal server error" })
         }
-    res.json(result)
     }   
 )
 

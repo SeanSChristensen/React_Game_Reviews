@@ -3,7 +3,9 @@
     "",
     "\\server",
     "\\src",
-    "\\src\\pages"
+    "\\src\\pages",
+    "\\src\\services"
   ],
+  "SelectedNode": "\\src\\pages\\list.jsx",
   "PreviewInSolutionExplorer": false
 }
