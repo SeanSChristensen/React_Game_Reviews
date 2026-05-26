@@ -17,7 +17,7 @@ async function ApiFetchHandler(url, requestHeaders, requestBody) {
         })
         const result = await response.json()
         if (response.ok) {
-            return { loading: false, data: result , error: null}
+            return { loading: false, data: result.data , error: null}
         }
         else {
             return { loading: false, data: null, error: result.error }
@@ -85,7 +85,7 @@ export default function ReviewPage() {
             const result = await ApiFetchHandler(
                 `http://localhost:3000/api/comments`,
                 {
-                    'game_id': gameInfo.data.data.game_id,
+                    'game_id': gameInfo.data.game_id,
                     'page': commentPage,
                     token: localStorage.getItem("token")
                 }
@@ -116,7 +116,7 @@ export default function ReviewPage() {
             </div>
     }
     else {
-        const timestamp = gameInfo.data.data.release_date;
+        const timestamp = gameInfo.data.release_date;
         const formattedDate = new Date(timestamp).toLocaleString("en-US",
             {
                 month: "short",
@@ -142,11 +142,11 @@ export default function ReviewPage() {
                 })}</div>
                 <div className='gameInformation'>
                     <p><strong>Release Date:</strong> {formattedDate}</p>
-                    <p><strong>Publisher:</strong> {gameInfo.data.data.publisher}</p>
-                    <p><strong>Development Studio:</strong> {gameInfo.data.data.development_studio}</p>
+                    <p><strong>Publisher:</strong> {gameInfo.data.publisher}</p>
+                    <p><strong>Development Studio:</strong> {gameInfo.data.development_studio}</p>
 
                     <p><strong>Summary:</strong></p>
-                    <p>{gameInfo.data.data.summary}</p></div>
+                    <p>{gameInfo.data.summary}</p></div>
 
                 {apiPostLoading === STATUS.SUCCESS ? (
                     <p className="submittedText" >Submitted!</p>
@@ -175,7 +175,7 @@ export default function ReviewPage() {
                 {!comments.loading
 	                ? !comments.error
                         ? (<div className="commentsGrid" style={{ padding: 20 }}>
-                            {comments.data.data.rows.map((item) => (
+                            {comments.data.rows.map((item) => (
                                 <><div class="card border-light mb-3 commentCards">
                                     <div class="card-header">01/01/2000</div>
                                     <div class="card-body">
@@ -189,7 +189,7 @@ export default function ReviewPage() {
                                 Previous
                             </button>) : (<div></div>)}
                             <span> Page {commentPage} </span>
-                            {comments.data.data.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
+                            {comments.data.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
                                 Next
                             </button>) : (<div></div>)}
                         </div>)
