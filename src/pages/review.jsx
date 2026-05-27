@@ -81,6 +81,67 @@ function GameInfoComponent(props) {
     return content
 }
 
+function RatingComponent(props) {
+    return <>    {
+        props.apiPostLoading === STATUS.SUCCESS ? (
+            <p className="submittedText" >Submitted!</p>
+        ) : (
+        <><div className="star-rating">
+            {[...Array(5)].map((star, index) => {
+                index += 1;
+                return (
+                    <FaStar
+                        key={index}
+                        className={index <= (props.hover || props.rating) ? 'on' : 'off'}
+                        onClick={() => props.setRating(index)}
+                        onMouseEnter={() => props.setHover(index)}
+                        onMouseLeave={() => props.setHover(props.rating)}
+                        size={30}
+                        color={index <= (props.hover || props.rating) ? '#ffd700' : '#e4e5e9'} />
+                );
+            })}
+        </div>
+                    <SubmitButton disabled={props.apiPostLoading === STATUS.SUBMITTING} value={props.apiPostLoading === STATUS.SUBMITTING ? "Submitting..." : "Submit"} formSubmitFunction=
+                        {props.handlePostRequest}
+                cssClasses={"buttonCenter"} />
+                    {props.apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
+        </>
+    )
+    }</>
+
+}
+
+function CommentsComponent(props) {
+    return <>        {!props.comments.loading
+        ? !props.comments.error
+            ? (<div className="commentsGrid" style={{ padding: 20 }}>
+                {props.comments.data.rows.map((item) => (
+                    <><div class="card border-light mb-3 commentCards">
+                        <div class="card-header">01/01/2000</div>
+                        <div class="card-body">
+                            <h5 class="card-title">{item.text}</h5>
+                            <p class="card-text">User1</p>
+                        </div>
+                    </div>
+                    </>
+                ))}
+                {props.commentPage != 1 ? (<button onClick={props.pageDown} disabled={props.comments == null}>
+                    Previous
+                </button>) : (<div></div>)}
+                <span> Page {props.commentPage} </span>
+                {props.comments.data.nextPage == true ? (<button onClick={props.pageUp} disabled={props.comments == null}>
+                    Next
+                </button>) : (<div></div>)}
+            </div>)
+            : <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
+        : <div class="text-center commentLoadingSpinner">
+            <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>
+    }</>
+}
+
 
 export default function ReviewPage() {
     const { gameName } = useParams();
@@ -159,58 +220,19 @@ export default function ReviewPage() {
         <>
         <div className="gameInfoBox">
             < GameInfoComponent gameName={gameName} gameInfo={gameInfo} />
-        {apiPostLoading === STATUS.SUCCESS ? (
-            <p className="submittedText" >Submitted!</p>
-        ) : (
-            <><div className="star-rating">
-                {[...Array(5)].map((star, index) => {
-                    index += 1;
-                    return (
-                        <FaStar
-                            key={index}
-                            className={index <= (hover || rating) ? 'on' : 'off'}
-                            onClick={() => setRating(index)}
-                            onMouseEnter={() => setHover(index)}
-                            onMouseLeave={() => setHover(rating)}
-                            size={30}
-                            color={index <= (hover || rating) ? '#ffd700' : '#e4e5e9'} />
-                    );
-                })}
-            </div>
-                <SubmitButton disabled={apiPostLoading === STATUS.SUBMITTING} value={apiPostLoading === STATUS.SUBMITTING ? "Submitting..." : "Submit"} formSubmitFunction=
-                    {handlePostRequest}
-                    cssClasses={"buttonCenter"} />
-                {apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
-            </>
-        )}
-        {!comments.loading
-            ? !comments.error
-                ? (<div className="commentsGrid" style={{ padding: 20 }}>
-                    {comments.data.rows.map((item) => (
-                        <><div class="card border-light mb-3 commentCards">
-                            <div class="card-header">01/01/2000</div>
-                            <div class="card-body">
-                                <h5 class="card-title">{item.text}</h5>
-                                <p class="card-text">User1</p>
-                            </div>
-                        </div>
-                        </>
-                    ))}
-                    {commentPage != 1 ? (<button onClick={pageDown} disabled={comments == null}>
-                        Previous
-                    </button>) : (<div></div>)}
-                    <span> Page {commentPage} </span>
-                    {comments.data.nextPage == true ? (<button onClick={pageUp} disabled={comments == null}>
-                        Next
-                    </button>) : (<div></div>)}
-                </div>)
-                : <p className="commentsLoadingErrorMessage">Sorry something went wrong loading comments, please contact the system administrator</p>
-            : <div class="text-center commentLoadingSpinner">
-                <div class="spinner-border" role="status">
-                    <span class="sr-only"></span>
-                </div>
-            </div>
-            }
+            < RatingComponent rating={rating}
+                hover={hover}
+                setRating={setRating}
+                setHover={setHover}
+                apiPostLoading={apiPostLoading}
+                STATUS={STATUS}
+                handlePostRequest={handlePostRequest} />
+            <CommentsComponent
+                comments={comments}
+                commentPage={commentPage}
+                pageUp={pageUp}
+                pageDown={pageDown}
+            />
         </div>
         </>
 
