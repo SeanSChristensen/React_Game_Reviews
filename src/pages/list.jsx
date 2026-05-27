@@ -7,7 +7,7 @@ export default function List() {
 
     useEffect(() => {
         setDataFromAPI(`http://localhost:3000/api/gameList`, setGameList, {})
-    })
+    }, [])
 
     return (
         <Layout>
