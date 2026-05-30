@@ -32,7 +32,6 @@ function GameInfoComponent(props) {
     let content;
 
     if (props.gameInfo.loading) content =
-
             <div className="text-center gameInfoLoadingSpinner">
                 <div className="spinner-border" role="status">
                     <span className="sr-only"></span>
@@ -55,20 +54,10 @@ function GameInfoComponent(props) {
             })
 
         content =
-        <>                <h1 className='gameTitle'>{props.gameName}</h1>
+        <><h1 className='gameTitle'>{props.gameName}</h1>
                 <div className="gameAverageRating">
-                    <h3>Average Rating</h3>
-                    {[...Array(5)].map((star, index, rating) => {
-                        index += 1;
-                        rating = 3;
-                        return (
-                            <FaStar
-                                key={index}
-                                size={30}
-                                className={index <= (rating) ? 'on' : 'off'}
-                                color={index <= (rating) ? '#ffd700' : '#e4e5e9'} />
-                        );
-                    })}</div>
+                {AverageRatingComponent(props.averageRating)}
+            </div>
                 <div className='gameInformation'>
                     <p><strong>Release Date:</strong> {formattedDate}</p>
                     <p><strong>Publisher:</strong> {props.gameInfo.data.publisher}</p>
@@ -112,7 +101,8 @@ function RatingComponent(props) {
 }
 
 function CommentsComponent(props) {
-    return <>        {!props.comments.loading
+    return <>
+        {!props.comments.loading
         ? !props.comments.error
             ? (<div className="commentsGrid" style={{ padding: 20 }}>
                 {props.comments.data.rows.map((item) => (
@@ -142,6 +132,32 @@ function CommentsComponent(props) {
     }</>
 }
 
+function AverageRatingComponent(averageRatingHook) {
+    if (averageRatingHook.loading) {
+        return <><div className="text-center gameInfoLoadingSpinner">
+            <div className="spinner-border" role="status">
+                <span className="sr-only"></span>
+            </div>
+        </div>;</>
+    }
+    else {
+    return <>
+        {[...Array(5)].map((star, index, rating) => {
+        index += 1;
+            rating = averageRatingHook.data.average_rating;
+        return (
+            <FaStar
+                key={index}
+                size={30}
+                className={index <= (rating) ? 'on' : 'off'}
+                color={index <= (rating) ? '#ffd700' : '#e4e5e9'} />
+        );
+        })}
+    </>
+    }
+
+
+}
 
 export default function ReviewPage() {
     const { gameName } = useParams();
@@ -153,6 +169,8 @@ export default function ReviewPage() {
 
     const [commentPage, setCommentPage] = useState(1);
     const [comments, setComments] = useState({ loading: true, data: null, error: null });
+
+    const [averageRating, setAverageRating] = useState({ loading: true, data: null, error: null })
 
     const [apiPostLoading, setApiPostLoading] = useState(STATUS.IDLE);
 
@@ -213,13 +231,30 @@ export default function ReviewPage() {
         }
     }, [commentPage, gameInfo])
 
+    useEffect(() => {
+        async function loadAverageRating() {
+            const result = await ApiFetchHandler(
+                `http://localhost:3000/api/averageRating`,
+                {
+                    'game_id': gameInfo.data.game_id,
+                    token: localStorage.getItem("token")
+                }
+            )
+            setAverageRating(result)
+        }
+
+        if (gameInfo.data) {
+            loadAverageRating()
+        }
+    }, [gameInfo])
+
 
     let content;
 
     content =
         <>
         <div className="gameInfoBox">
-            < GameInfoComponent gameName={gameName} gameInfo={gameInfo} />
+            < GameInfoComponent gameName={gameName} gameInfo={gameInfo} averageRating={averageRating} />
             < RatingComponent rating={rating}
                 hover={hover}
                 setRating={setRating}

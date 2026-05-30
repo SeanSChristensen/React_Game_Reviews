@@ -96,15 +96,14 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
 })
 
 app.get("/api/averageRating", async (req, res) => {
-    const game_id = req.params.game_id;
+    const game_id = req.headers.game_id;
     var result = {};
     try {
-        result = await runQuery(`select AVG(rating) from public."review" where name = '${game_id}'`);
-        result.rows[0]["status"] = "Success"
+        result = await runQuery(`SELECT COALESCE(ROUND(AVG(rating)), 0) FROM public."review" WHERE game_id = '${game_id}'`);
     } catch (e) {
-        result = { status: "Fail", error: e }
+        result = { error:"database error"}
     }
-    res.json(result.rows[0])
+    res.json({ data: { average_rating: result.rows[0].coalesce } } )
 })
 
 app.get("/api/comments", async (req, res) => {
