@@ -5,6 +5,15 @@ import './App.css';
 
 
 const Layout = ({ children }) => {
+    let firstName = localStorage.getItem("first_name");
+    let lastName = localStorage.getItem("last_name");
+
+    if (firstName == null || lastName == null) {
+        firstName = ""
+        lastName= ""
+
+    }
+
     return (
         <>
             <nav class="navbar navbar-expand-lg bg-body-tertiary" id="customNavBar">
@@ -30,6 +39,9 @@ const Layout = ({ children }) => {
                                 <a class="nav-link NavBarLink" href="/login">Login </a>
                             </li>
                         </ul>
+                        <span className="navbar-text ms-auto navBarName">
+                            {firstName + " " + lastName}
+                        </span>
                     </div>
                 </div>
             </nav>

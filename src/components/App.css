@@ -193,3 +193,7 @@ star-rating .on {
 .registerButton{
     padding-top: 5px;
 }
+
+.navBarName {
+    color: white !important;
+}
