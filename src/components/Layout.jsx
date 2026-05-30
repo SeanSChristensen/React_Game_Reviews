@@ -7,11 +7,12 @@ import './App.css';
 const Layout = ({ children }) => {
     let firstName = localStorage.getItem("first_name");
     let lastName = localStorage.getItem("last_name");
+    let isLoggedIn = false
 
     if (firstName == null || lastName == null) {
         firstName = ""
         lastName= ""
-
+        isLoggedIn = true
     }
 
     return (
@@ -35,9 +36,11 @@ const Layout = ({ children }) => {
                             <li class="nav-item">
                                 <a class="nav-link NavBarLink" href="/register">Register </a>
                             </li>
-                            <li class="nav-item">
+                            {isLoggedIn
+                                ?<><li class="nav-item">
                                 <a class="nav-link NavBarLink" href="/login">Login </a>
-                            </li>
+                                </li></>
+                                : <></>}
                         </ul>
                         <span className="navbar-text ms-auto navBarName">
                             {firstName + " " + lastName}
