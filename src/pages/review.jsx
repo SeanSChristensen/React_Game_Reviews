@@ -5,31 +5,8 @@ import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
 import { SubmitButton } from "../components/submitButton";
 import postDataWithStatus from "../services/api/POST";
+import ApiFetchHandler from "../services/api/GET";
 import STATUS from "../services/api/status";
-
-
-async function ApiFetchHandler(url, requestHeaders, requestBody) {
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: requestHeaders,
-            body: JSON.stringify(requestBody)
-        })
-        const result = await response.json()
-        if (response.ok) {
-            return { loading: false, data: result.data , error: null}
-        }
-        else {
-            if (response.status === 401) {
-                localStorage.clear();
-            }
-            return { loading: false, data: null, error: result.error }
-        }
-    } catch (e) {
-        console.log(e)
-        return { loading: false, data: null, error: "network error" }
-    }
-}
 
 function GameInfoComponent(props) {
     let content;

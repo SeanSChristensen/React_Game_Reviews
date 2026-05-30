@@ -132,7 +132,6 @@ app.get("/api/gameList/", async (req, res) => {
     var response = {};
     try {
         result = await runQuery(`select name from public."Game"`);
-        response.status = "Success"
         response.data = result.rows
         res.status(200)
     } catch (e) {

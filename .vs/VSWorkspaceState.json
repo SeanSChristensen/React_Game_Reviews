@@ -3,9 +3,10 @@
     "",
     "\\server",
     "\\src",
+    "\\src\\components",
     "\\src\\pages",
     "\\src\\services"
   ],
-  "SelectedNode": "\\RunInstructions",
+  "SelectedNode": "\\src\\components\\Layout.jsx",
   "PreviewInSolutionExplorer": false
 }
