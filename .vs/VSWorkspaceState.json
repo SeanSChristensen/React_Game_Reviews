@@ -5,7 +5,8 @@
     "\\src",
     "\\src\\components",
     "\\src\\pages",
-    "\\src\\services"
+    "\\src\\services",
+    "\\src\\services\\api"
   ],
   "SelectedNode": "\\src\\components\\Layout.jsx",
   "PreviewInSolutionExplorer": false

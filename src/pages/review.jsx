@@ -235,7 +235,8 @@ export default function ReviewPage() {
         <>
         <div className="gameInfoBox">
             < GameInfoComponent gameName={gameName} gameInfo={gameInfo} averageRating={averageRating} />
-            < RatingComponent rating={rating}
+            {gameInfo.data
+                ? (<>< RatingComponent rating={rating}
                 hover={hover}
                 setRating={setRating}
                 setHover={setHover}
@@ -247,7 +248,9 @@ export default function ReviewPage() {
                 commentPage={commentPage}
                 pageUp={pageUp}
                 pageDown={pageDown}
-            />
+            /></>)
+                : (<></>)}
+
         </div>
         </>
 
