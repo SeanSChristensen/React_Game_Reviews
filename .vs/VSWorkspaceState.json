@@ -6,8 +6,8 @@
     "\\src\\components",
     "\\src\\pages",
     "\\src\\services",
-    "\\src\\services\\api"
+    "\\src\\services\\api",
+    "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\src\\components\\Layout.jsx",
   "PreviewInSolutionExplorer": false
 }
