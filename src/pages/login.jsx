@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { SubmitButton } from "../components/submitButton"
 import STATUS from "../services/api/status";
 
-
 async function postDataWithStatus(url, requestBody, requestHeaders) {
     try {
         const response = await fetch(url, {
