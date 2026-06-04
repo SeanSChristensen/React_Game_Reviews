@@ -2,6 +2,7 @@ import Layout from "../components/Layout";
 import React, { useState, useEffect } from 'react';
 import { SubmitButton } from "../components/submitButton"
 import STATUS from "../services/api/status";
+import { useNavigate } from "react-router";
 
 async function postDataWithStatus(url, requestBody, requestHeaders) {
     try {
@@ -31,7 +32,9 @@ export default function Login() {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
 
-    const [token, setToken] = useState("")
+    const [isLoginSuccessful, setIsLoginSuccessful] = useState(null)
+
+    const navigate = useNavigate();
 
     const handlePostRequest = async () => {
         const result = await postDataWithStatus(
@@ -40,10 +43,10 @@ export default function Login() {
             { 'Content-Type': 'application/x-www-form-urlencoded' }
         )
         if (result.status == 200) {
-            setToken("success")
+            navigate("/");
         }
         else {
-            setToken("fail")
+            setIsLoginSuccessful(false)
         }
     }
 
@@ -91,7 +94,7 @@ export default function Login() {
                     </div>
                 </div>
             </div>
-            <p>{token}</p>
+            {isLoginSuccessful === false ?<p>Invalid login details</p> :null}
         </Layout>
     )
 }
