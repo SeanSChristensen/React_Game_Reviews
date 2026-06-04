@@ -1,10 +1,32 @@
 import Layout from "../components/Layout";
 
 export default function Home() {
+    if (localStorage.getItem("first_name") !== null && localStorage.getItem("last_name") !== null) {
+        return (
+            <Layout>
+                <LoggedInHomePage/>
+            </Layout>
+        )
+    }
+    else {
+        return (<Layout>
+            <NotLoggedInHomePage />
+        </Layout>)
+    }
+}
+
+function NotLoggedInHomePage() {
     return (
-        <Layout>
-            <h1>This is the home page</h1>
-            <h2>Welcome</h2>
-        </Layout>
+        <>
+            <h2>Welcome to the homepage</h2>
+        </>
+    )
+}
+
+function LoggedInHomePage() {
+    return (
+        <>
+            <h2>Welcome {localStorage.getItem("first_name")}  {localStorage.getItem("last_name")}</h2>
+        </>
     )
 }
