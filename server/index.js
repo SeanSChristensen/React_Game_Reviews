@@ -96,6 +96,12 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
 })
 
 app.get("/api/averageRating", async (req, res) => {
+    if (await isTokenValid(req.headers.token) == false) {
+        res.status(401).json({
+            error: "unauthorised"
+        });
+    }
+    else {
     const game_id = req.headers.game_id;
     var result = {};
     try {
@@ -104,9 +110,16 @@ app.get("/api/averageRating", async (req, res) => {
         result = { error:"database error"}
     }
     res.json({ data: { average_rating: result.rows[0].coalesce } } )
+    }
 })
 
 app.get("/api/comments", async (req, res) => {
+    if (await isTokenValid(req.headers.token) == false) {
+        res.status(401).json({
+            error: "unauthorised"
+        });
+    }
+    else {
     var result = {};
     var result2;
         try {
@@ -123,6 +136,7 @@ app.get("/api/comments", async (req, res) => {
         } catch (e) {
             res.status(500).json({ error: "internal server error" })
         }
+    }
     }   
 )
 

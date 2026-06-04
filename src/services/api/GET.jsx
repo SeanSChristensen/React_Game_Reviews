@@ -7,7 +7,10 @@ export default async function ApiFetchHandler(url, requestHeaders, requestBody) 
     try {
         const response = await fetch(url, {
             method: 'GET',
-            headers: requestHeaders,
+            headers: {
+                ...requestHeaders,
+                token: localStorage.getItem("token")
+            },
             body: JSON.stringify(requestBody)
         })
         const result = await response.json()
@@ -18,19 +21,9 @@ export default async function ApiFetchHandler(url, requestHeaders, requestBody) 
             if (response.status === 401) {
                 const refreshTokenRequest = await refreshToken()
                 if (refreshTokenRequest.status === 200) {
-                    const response = await fetch(url, {
-                        method: 'GET',
-                        headers: {
-                            ...requestHeaders,
-                            token: localStorage.getItem("token")
-                        },
-                        body: JSON.stringify(requestBody)
-                    })
-                    const result = await response.json()
-                    if (response.ok) {
-                        return { loading: false, data: result.data, error: null }
-                    }
+                    return ApiFetchHandler(url, requestHeaders, requestBody)
                 }
+                else { localStorage.clear() }
             }
             return { loading: false, data: null, error: result.error }
         }

@@ -181,12 +181,8 @@ export default function ReviewPage() {
     useEffect(() => {
         async function loadGameInfo() {
             const result = await ApiFetchHandler(
-                `http://localhost:3000/api/gameInfo/${gameName}`,
-                {
-                    token: localStorage.getItem("token")
-                }
+                `http://localhost:3000/api/gameInfo/${gameName}`,{}
             )
-
             setGameInfo(result)
         }
 
@@ -199,8 +195,7 @@ export default function ReviewPage() {
                 `http://localhost:3000/api/comments`,
                 {
                     'game_id': gameInfo.data.game_id,
-                    'page': commentPage,
-                    token: localStorage.getItem("token")
+                    'page': commentPage
                 }
             )
             setComments(result)
@@ -216,8 +211,7 @@ export default function ReviewPage() {
             const result = await ApiFetchHandler(
                 `http://localhost:3000/api/averageRating`,
                 {
-                    'game_id': gameInfo.data.game_id,
-                    token: localStorage.getItem("token")
+                    'game_id': gameInfo.data.game_id
                 }
             )
             setAverageRating(result)
