@@ -9,6 +9,6 @@
     "\\src\\services\\api",
     "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\src\\services\\keycloak\\token.jsx",
+  "SelectedNode": "\\src\\pages\\review.jsx",
   "PreviewInSolutionExplorer": false
 }

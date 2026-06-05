@@ -44,20 +44,27 @@ async function isTokenValid(token) {
 
 
 app.post('/rating', async (req, res) => {
-    var result = {};
-    try {
-        result = await runQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
-        if (result.rowCount == 1) {
-            res.status(201).json({ status: "success" });
+    if (await isTokenValid(req.headers.token) == false) {
+        res.status(401).json({
+            error: "unauthorised"
+        });
+    }
+    else {
+        var result = {};
+        try {
+            result = await runQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
+            if (result.rowCount == 1) {
+                res.status(201).json({ data: "success" });
+            }
+            else {
+                res.status(500).json({ error: "fail" });
+            }
         }
-        else {
-            res.status(500).json({ status: "fail" });
+        catch (e) {
+            res.status(500).json({ error: "Database error, please contact system administrator or try again" });
         }
     }
-    catch (e) {
-        result = { status: "Error", error: e }
-        res.status(500).json({ status: "fail" });
-    }
+
 });
 
 app.use(cors({

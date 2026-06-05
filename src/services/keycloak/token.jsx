@@ -13,9 +13,9 @@ export default async function refreshToken() {
         })
         const result = await response.json()
         if (response.status == 200) {
+            const userDetails = JSON.parse(atob(result.access_token.split('.')[1]))
             localStorage.setItem("token", result.access_token)
             localStorage.setItem("refresh_token", result.refresh_token)
-            const userDetails = JSON.parse(atob(result.access_token.split('.')[1]))
             localStorage.setItem("first_name", userDetails.given_name)
             localStorage.setItem("last_name", userDetails.family_name)
         }

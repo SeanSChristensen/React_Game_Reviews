@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from "../components/Layout";
 import { SubmitButton } from "../components/submitButton";
-import postDataWithStatus from "../services/api/POST";
-import ApiFetchHandler from "../services/api/GET";
+import ApiPostFetchHandler from "../services/api/POST";
+import ApiGetFetchHandler from "../services/api/GET";
 import STATUS from "../services/api/status";
 
 function GameInfoComponent(props) {
@@ -52,7 +52,7 @@ function GameInfoComponent(props) {
 
 function RatingComponent(props) {
     return <>    {
-        props.apiPostLoading === STATUS.SUCCESS ? (
+        props.apiPostLoading.data && !props.apiPostLoading.loading  ? (
             <p className="submittedText" >Submitted!</p>
         ) : (
         <><div className="star-rating">
@@ -70,10 +70,10 @@ function RatingComponent(props) {
                 );
             })}
         </div>
-                    <SubmitButton disabled={props.apiPostLoading === STATUS.SUBMITTING} value={props.apiPostLoading === STATUS.SUBMITTING ? "Submitting..." : "Submit"} formSubmitFunction=
+                    <SubmitButton disabled={props.apiPostLoading.loading} value={props.apiPostLoading.loading ? "Submitting..." : "Submit"} formSubmitFunction=
                         {props.handlePostRequest}
                 cssClasses={"buttonCenter"} />
-                    {props.apiPostLoading === STATUS.ERROR && <p className="submitErrorMessage" >Sorry something went wrong with submitting your rating, please try again or contact system administrator</p>}
+                    {props.apiPostLoading.error && <p className="submitErrorMessage" >{props.apiPostLoading.error}</p>}
         </>
     )
     }</>
@@ -152,17 +152,17 @@ export default function ReviewPage() {
 
     const [averageRating, setAverageRating] = useState({ loading: true, data: null, error: null })
 
-    const [apiPostLoading, setApiPostLoading] = useState(STATUS.IDLE);
+    const [submitRatingStatus, setSubmitRatingStatus] = useState({loading : false, data: null, error: null});
 
     const handlePostRequest = async () => {
-        postDataWithStatus(
+        setSubmitRatingStatus({ loading:true })
+        const result = await ApiPostFetchHandler(
             `http://localhost:3000/rating`,
-            setApiPostLoading,
             { rating: rating, game_id: gameInfo.data.game_id },
             {
                 'Content-Type': 'application/json',
-                token: localStorage.getItem("token")
             })
+            setSubmitRatingStatus(result)
     }
 
     const pageUp = async (e) => {
@@ -180,7 +180,7 @@ export default function ReviewPage() {
 
     useEffect(() => {
         async function loadGameInfo() {
-            const result = await ApiFetchHandler(
+            const result = await ApiGetFetchHandler(
                 `http://localhost:3000/api/gameInfo/${gameName}`,{}
             )
             setGameInfo(result)
@@ -191,7 +191,7 @@ export default function ReviewPage() {
 
     useEffect(() => {
         async function loadCommentInfo() {
-            const result = await ApiFetchHandler(
+            const result = await ApiGetFetchHandler(
                 `http://localhost:3000/api/comments`,
                 {
                     'game_id': gameInfo.data.game_id,
@@ -208,7 +208,7 @@ export default function ReviewPage() {
 
     useEffect(() => {
         async function loadAverageRating() {
-            const result = await ApiFetchHandler(
+            const result = await ApiGetFetchHandler(
                 `http://localhost:3000/api/averageRating`,
                 {
                     'game_id': gameInfo.data.game_id
@@ -234,7 +234,7 @@ export default function ReviewPage() {
                 hover={hover}
                 setRating={setRating}
                 setHover={setHover}
-                apiPostLoading={apiPostLoading}
+                apiPostLoading={submitRatingStatus}
                 STATUS={STATUS}
                 handlePostRequest={handlePostRequest} />
             <CommentsComponent
