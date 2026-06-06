@@ -26,7 +26,7 @@
 
 .buttonCenter {
     grid-column: 2 !important;
-    grid-row: 4 !important;
+    grid-row: 5 !important;
     place-items: center;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
 
 .commentsGrid {
     grid-column: 1 !important;
-    grid-row: 5 !important;
+    grid-row: 6 !important;
     grid-column: span 3 !important;
 }
 
@@ -202,3 +202,21 @@ star-rating .on {
 .navBarName {
     color: white !important;
 }
+
+.commentContainer {
+    grid-column: 2;
+    grid-row: 4;
+    display: flex;
+    justify-content: center;
+}
+
+.commentBox {
+    width: 100%;
+    max-width: 400px;
+    min-height: 100px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 4px 8px 8px hsl(0deg 0% 0% / 0.25);
+}
+

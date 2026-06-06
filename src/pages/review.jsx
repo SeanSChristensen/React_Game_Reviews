@@ -70,12 +70,20 @@ function RatingComponent(props) {
                 );
             })}
                 </div>
+                    <div className="commentContainer">
+                        <textarea
+                            className="commentBox"
+                            placeholder="Leave a comment..."
+                            value={props.comment}
+                            onChange={(e) => props.setUserComment(e.target.value)}
+                            maxLength={138}
+                        />
+                    </div>
                     <div className="buttonCenter">
                     <SubmitButton disabled={props.apiPostLoading.loading} value={props.apiPostLoading.loading ? "Submitting..." : "Submit"} formSubmitFunction=
                         {props.handlePostRequest} cssClasses={"buttonCenter"} />
                     {props.apiPostLoading.error ? <p className="submitErrorMessage" >{props.apiPostLoading.error}</p> :<></>}
                     </div>
-
         </>
     )
     }</>
@@ -148,6 +156,8 @@ export default function ReviewPage() {
 
     const [rating, setRating] = useState(0);
     const [hover, setHover] = useState(0);
+
+    const [userComment, setUserComment] = useState("");
 
     const [commentPage, setCommentPage] = useState(1);
     const [comments, setComments] = useState({ loading: true, data: null, error: null });
@@ -224,7 +234,6 @@ export default function ReviewPage() {
         }
     }, [gameInfo])
 
-
     let content;
 
     content =
@@ -236,6 +245,7 @@ export default function ReviewPage() {
                 hover={hover}
                 setRating={setRating}
                 setHover={setHover}
+                setUserComment={setUserComment}
                 apiPostLoading={submitRatingStatus}
                 STATUS={STATUS}
                 handlePostRequest={handlePostRequest} />

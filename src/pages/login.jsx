@@ -63,8 +63,8 @@ export default function Login() {
         <Layout>
             <div className="registerBox">
                 <div className="emailInput">
-                    <label class="form-label">Email address</label>
-                    <input type="email" class="form-control" placeholder="name@example.com" value={userName} onChange={emailChange} />
+                    <label class="form-label">Username</label>
+                    <input type="email" class="form-control" value={userName} onChange={emailChange} />
                 </div>
                 <div class="passwordInput">
                     <div class="col-auto">
