@@ -195,6 +195,10 @@ star-rating .on {
     padding-top: 5px;
 }
 
+.loginButton {
+    padding-top: 12px;
+}
+
 .navBarName {
     color: white !important;
 }

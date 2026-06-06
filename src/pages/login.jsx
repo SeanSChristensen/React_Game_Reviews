@@ -73,24 +73,8 @@ export default function Login() {
                     <div class="col-auto">
                         <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" value={password} onChange={passwordChange} />
                     </div>
-                    {password.length > 16
-                        ? <div class="col-auto">
-                            <span id="passwordHelpInline" class="form-text passwordRequirementText">
-                                Cannot be longer than 15 characters
-                            </span>
-                        </div>
-                        : <></>
-                    }
-                    {password.length < 11
-                        ? <div class="col-auto">
-                            <span id="passwordHelpInline" class="form-text passwordRequirementText">
-                                Must be atleast 10 characters
-                            </span>
-                        </div>
-                        : <></>
-                    }
                     <div>
-                        <SubmitButton value={"submit"} formSubmitFunction={handlePostRequest} cssClasses="registerButton" />
+                        <SubmitButton value={"submit"} formSubmitFunction={handlePostRequest} cssClasses="loginButton" />
                     </div>
                 </div>
             </div>
