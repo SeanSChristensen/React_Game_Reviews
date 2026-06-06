@@ -69,11 +69,13 @@ function RatingComponent(props) {
                         color={index <= (props.hover || props.rating) ? '#ffd700' : '#e4e5e9'} />
                 );
             })}
-        </div>
+                </div>
+                    <div className="buttonCenter">
                     <SubmitButton disabled={props.apiPostLoading.loading} value={props.apiPostLoading.loading ? "Submitting..." : "Submit"} formSubmitFunction=
-                        {props.handlePostRequest}
-                cssClasses={"buttonCenter"} />
-                    {props.apiPostLoading.error && <p className="submitErrorMessage" >{props.apiPostLoading.error}</p>}
+                        {props.handlePostRequest} cssClasses={"buttonCenter"} />
+                    {props.apiPostLoading.error ? <p className="submitErrorMessage" >{props.apiPostLoading.error}</p> :<></>}
+                    </div>
+
         </>
     )
     }</>

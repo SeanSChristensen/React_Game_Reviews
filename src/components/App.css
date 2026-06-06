@@ -29,6 +29,7 @@
     grid-row: 4 !important;
     place-items: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -46,7 +47,6 @@ body {
 
 star-rating .on {
     color: #ffd700;
-}
 }
 
 
@@ -67,6 +67,7 @@ star-rating .on {
 .submitErrorMessage {
     color: red;
     text-align: center;
+    margin-top: 10px;
 }
 
 .submittedText {

@@ -9,6 +9,6 @@
     "\\src\\services\\api",
     "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\src\\pages\\review.jsx",
+  "SelectedNode": "\\src\\services\\api\\POST.jsx",
   "PreviewInSolutionExplorer": false
 }
