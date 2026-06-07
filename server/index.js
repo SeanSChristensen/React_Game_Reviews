@@ -26,6 +26,12 @@ async function runQuery(queryString) {
     return res
 }
 
+
+async function getEmailFromToken(token) {
+    const details = jose.decodeJwt(token)
+    return details.email
+}
+
 function getKeycloakJsonWebKeySet() {
     const result = jose.createRemoteJWKSet(new URL('http://localhost:8080/realms/my-react-app/protocol/openid-connect/certs'))
     return result
@@ -50,10 +56,13 @@ app.post('/rating', async (req, res) => {
         });
     }
     else {
+        const email = await getEmailFromToken(req.headers.token)
         var result = {};
+        var result2 = {};
         try {
             result = await runQuery(`INSERT INTO public.review(rating,game_id) VALUES (${req.body.rating}, '${req.body.game_id}')`)
-            if (result.rowCount == 1) {
+            result2 = await runQuery(`INSERT INTO public.comment(text,game_id) VALUES ('${req.body.userComment}', '${req.body.game_id}')`)
+            if (result.rowCount == 1 && result2.rowCount == 1) {
                 res.status(201).json({ data: "success" });
             }
             else {

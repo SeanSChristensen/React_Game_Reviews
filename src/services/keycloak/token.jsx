@@ -1,5 +1,4 @@
 
-
 export default async function refreshToken() {
     const refresh_token = localStorage.getItem("refresh_token")
 

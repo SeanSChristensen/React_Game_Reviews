@@ -170,7 +170,7 @@ export default function ReviewPage() {
         setSubmitRatingStatus({ loading:true })
         const result = await ApiPostFetchHandler(
             `http://localhost:3000/rating`,
-            { rating: rating, game_id: gameInfo.data.game_id },
+            { rating: rating, game_id: gameInfo.data.game_id, userComment: userComment },
             {
                 'Content-Type': 'application/json',
             })

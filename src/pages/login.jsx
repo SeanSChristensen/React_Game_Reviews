@@ -27,7 +27,6 @@ async function postDataWithStatus(url, requestBody, requestHeaders) {
 }
 
 
-//todo this probably doesn't need state? to figure out
 export default function Login() {
     const [userName, setUserName] = useState("")
     const [password, setPassword] = useState("")
