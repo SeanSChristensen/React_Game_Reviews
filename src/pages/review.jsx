@@ -100,7 +100,7 @@ function CommentsComponent(props) {
                         <div class="card-header">01/01/2000</div>
                         <div class="card-body">
                             <h5 class="card-title">{item.text}</h5>
-                            <p class="card-text">User1</p>
+                            <p class="card-text">{item.user_name}</p>
                         </div>
                     </div>
                     </>
