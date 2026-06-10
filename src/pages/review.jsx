@@ -131,7 +131,7 @@ function AverageRatingComponent(averageRatingHook) {
         </div>;</>
     }
     else {
-    return <>
+    return <><p>Average Rating:</p>
         {[...Array(5)].map((star, index, rating) => {
         index += 1;
             rating = averageRatingHook.data.average_rating;
