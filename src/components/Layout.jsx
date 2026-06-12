@@ -41,7 +41,10 @@ const Layout = ({ children }) => {
                                     <li class="nav-item">
                                 <a class="nav-link NavBarLink" href="/login">Login </a>
                                 </li></>
-                                : <></>}
+                                : <>
+                                    <li class="nav-item">
+                                    <a class="nav-link NavBarLink">Logout </a>
+                                </li></>}
                         </ul>
                         <span className="navbar-text ms-auto navBarName">
                             {firstName + " " + lastName}
