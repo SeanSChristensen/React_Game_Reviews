@@ -97,7 +97,7 @@ function CommentsComponent(props) {
             ? (<div className="commentsGrid" style={{ padding: 20 }}>
                 {props.comments.data.rows.map((item) => (
                     <><div class="card border-light mb-3 commentCards">
-                        <div class="card-header">01/01/2000</div>
+                        <div class="card-header">{ item.date_created }</div>
                         <div class="card-body">
                             <h5 class="card-title">{item.text}</h5>
                             <p class="card-text">{item.user_name}</p>

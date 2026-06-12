@@ -139,7 +139,7 @@ app.get("/api/comments", async (req, res) => {
     var result = {};
     var result2;
         try {
-            result = await runQuery(`select * from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
+            result = await runQuery(`select game_id, text, user_name, TO_CHAR(date_created, 'DD/MM/YYYY') as date_created from public.comment where game_id = '${req.headers.game_id}' offset ${(req.headers.page * 5) - 5} limit 5`);
             result2 = await runQuery(`select count(game_id) from public.comment where game_id = '${req.headers.game_id}'`);
             res.status(200)
             if (req.headers.page * 5 >= result2.rows[0].count) {

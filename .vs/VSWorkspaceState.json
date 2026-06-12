@@ -9,6 +9,6 @@
     "\\src\\services\\api",
     "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\RunInstructions",
+  "SelectedNode": "\\server\\index.js",
   "PreviewInSolutionExplorer": false
 }
