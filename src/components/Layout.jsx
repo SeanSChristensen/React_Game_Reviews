@@ -2,9 +2,20 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import './App.css';
+import { sendLogoutRequest } from '../services/keycloak/token'
+import { useNavigate } from 'react-router-dom';
+
+async function logout(navigate) {
+    await sendLogoutRequest().then(() => navigate('/'))
+}
 
 
 const Layout = ({ children }) => {
+    const navigate = useNavigate();
+    async function logoutInner(navigate)
+    { logout(navigate) }
+
+
     let firstName = localStorage.getItem("first_name");
     let lastName = localStorage.getItem("last_name");
     let isLoggedIn = false
@@ -43,7 +54,7 @@ const Layout = ({ children }) => {
                                 </li></>
                                 : <>
                                     <li class="nav-item">
-                                    <a class="nav-link NavBarLink">Logout </a>
+                                        <button className="btn btn-link NavBarLink" onClick={() => logoutInner(navigate)}>Logout</button>
                                 </li></>}
                         </ul>
                         <span className="navbar-text ms-auto navBarName">

@@ -1,5 +1,5 @@
 
-export default async function refreshToken() {
+async function refreshToken() {
     const refresh_token = localStorage.getItem("refresh_token")
 
     try {
@@ -24,3 +24,28 @@ export default async function refreshToken() {
         return error
     }
 }
+
+async function sendLogoutRequest() {
+    const refresh_token = localStorage.getItem("refresh_token")
+
+    try {
+        const response = await fetch(`http://localhost:8080/realms/my-react-app/protocol/openid-connect/logout`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams({
+                'client_id': 'my-react-app',
+                'refresh_token': refresh_token
+            })
+        })
+        if (response.status == 200) {
+            console.log("Logout successful")
+        }
+        localStorage.clear()
+        return response
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export { refreshToken, sendLogoutRequest }

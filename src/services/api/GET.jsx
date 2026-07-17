@@ -1,4 +1,4 @@
-import refreshToken from "../keycloak/token";
+import { refreshToken } from "../keycloak/token";
 
 //TODO firstly tokens in the header needs to be removed from the review page function call and should be got from local storage here instead.
 //TODO ensure the logic around the token refresh works properly, mainly cases such as token refresh done however there is a 500

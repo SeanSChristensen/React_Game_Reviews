@@ -1,4 +1,4 @@
-import refreshToken from "../keycloak/token";
+import { refreshToken } from "../keycloak/token";
 
 export default async function ApiPostFetchHandler(url, requestBody, requestHeaders) {
     try {
