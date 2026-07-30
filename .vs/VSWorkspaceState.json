@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\keycloak",
     "\\server",
     "\\src",
     "\\src\\components",
@@ -9,6 +10,6 @@
     "\\src\\services\\api",
     "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\RunInstructions",
+  "SelectedNode": "\\keycloak\\AdminDetails.txt",
   "PreviewInSolutionExplorer": false
 }

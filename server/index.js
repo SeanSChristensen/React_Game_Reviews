@@ -171,6 +171,41 @@ app.get("/api/gameList/", async (req, res) => {
     res.json(response)
 })
 
+app.post("/api/register/", async (req, res) => {
+    try {
+        const response = await fetch('http://localhost:8080/realms/master/protocol/openid-connect/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: `grant_type=password&client_id=my-react-app&username=seanc&password=password`
+        })
+        const result = await response.json()
+        const response2 = await fetch(`http://localhost:8080/admin/realms/my-react-app/users`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${result.access_token}` },
+            body: JSON.stringify({
+                "username": req.body.username,
+                "emailVerified": true,
+                "email": req.body.email,
+                "firstName": "Test",
+                "lastName": "Test",
+                "enabled": true,
+                "credentials": [
+                    {
+                        "type": "password",
+                        "value": req.body.credentials[0].value
+                    }
+                ]
+            })
+        })
+        const result2 = await response2
+        res.json(result2)
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+})
+
+
 app.use((req, res) => {
     res.status(404).json({
         error: "Not Found",

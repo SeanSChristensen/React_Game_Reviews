@@ -1,10 +1,7 @@
 import Layout from "../components/Layout";
 import React, { useState } from 'react';
 import { SubmitButton } from "../components/submitButton"
-
-const placeHolderButtonFunction = () => {
-
-};
+import { registerNewUser } from "../services/keycloak/token"
 
 export default function Register() {
     const [email, setEmail] = useState("")
@@ -17,6 +14,10 @@ export default function Register() {
     const passwordChange = (e) => {
         setPassword(e.target.value)
     };
+
+    async function placeHolderButtonFunction() {
+        await registerNewUser(email, password);
+    }
 
     return (
         <Layout>

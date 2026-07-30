@@ -48,4 +48,35 @@ async function sendLogoutRequest() {
     }
 }
 
-export { refreshToken, sendLogoutRequest }
+async function registerNewUser(username,password) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "username": username,
+                "emailVerified": true,
+                "email": `${username}@example.com`,
+                "firstName": "Test",
+                "lastName": "Test",
+                "enabled": true,
+                "credentials": [
+                    {
+                        "type": "password",
+                        "value": password
+                    }
+                ]
+            })
+        })
+        if (response.status == 200) {
+            console.log("User created")
+        }
+        await console.log(response)
+        return response
+    } catch (error) {
+        console.log(error)
+        return error
+    }
+}
+
+export { refreshToken, sendLogoutRequest, registerNewUser }
