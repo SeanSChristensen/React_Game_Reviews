@@ -10,6 +10,6 @@
     "\\src\\services\\api",
     "\\src\\services\\keycloak"
   ],
-  "SelectedNode": "\\keycloak\\AdminDetails.txt",
+  "SelectedNode": "\\src\\pages\\review.jsx",
   "PreviewInSolutionExplorer": false
 }

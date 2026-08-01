@@ -1,11 +1,12 @@
 import Layout from "../components/Layout";
 import React, { useState } from 'react';
 import { SubmitButton } from "../components/submitButton"
-import { registerNewUser } from "../services/keycloak/token"
+import ApiPostFetchHandler from "../services/api/POST";
 
 export default function Register() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [registrationStatus, setRegistrationStatus] = useState({ loading: false, data: null, error: null });
 
     const emailChange = (e) => {
         setEmail(e.target.value)
@@ -15,8 +16,22 @@ export default function Register() {
         setPassword(e.target.value)
     };
 
-    async function placeHolderButtonFunction() {
-        await registerNewUser(email, password);
+    const placeHolderButtonFunction = async() => {
+        console.log(email, password)
+        setRegistrationStatus({ loading: true, data: null, error: null });
+        const result = await ApiPostFetchHandler(`http://localhost:3000/api/register`, {
+            username: email,
+            firstName: "Test",
+            lastName: "Test",
+            enabled: true,
+            credentials: [
+                {
+                    type: "password",
+                    value: password
+                }
+            ]
+        }, { 'Content-Type': 'application/json' })
+        setRegistrationStatus(result)
     }
 
     return (
@@ -52,7 +67,7 @@ export default function Register() {
                     <div>
                         <SubmitButton disabled={password.length < 11 || password.length > 16 ? true : false} value={"submit"} formSubmitFunction={placeHolderButtonFunction} cssClasses="registerButton"/>
                     </div>
-
+                    {registrationStatus.data !== null ? <p>{registrationStatus.data}</p> : <p>{registrationStatus.error}</p>   }
                 </div>
             </div>
         </Layout>

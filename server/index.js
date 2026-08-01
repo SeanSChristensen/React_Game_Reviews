@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { Pool } = require('pg');
 const jose = require("jose");
+const { data } = require("react-router-dom");
 
 
 const pool = new Pool({
@@ -184,8 +185,7 @@ app.post("/api/register/", async (req, res) => {
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${result.access_token}` },
             body: JSON.stringify({
                 "username": req.body.username,
-                "emailVerified": true,
-                "email": req.body.email,
+
                 "firstName": "Test",
                 "lastName": "Test",
                 "enabled": true,
@@ -197,11 +197,12 @@ app.post("/api/register/", async (req, res) => {
                 ]
             })
         })
-        const result2 = await response2
-        res.json(result2)
+        if (response2.status == 409) {
+            res.status(409).json({ error: "User already exists" })
+        }
+        res.json({data: "User registered successfully"})
     } catch (error) {
-        console.log(error)
-        return error
+        res.status(500).json({ error: "Internal server error" })
     }
 })
 
