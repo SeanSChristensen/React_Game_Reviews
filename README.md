@@ -2,6 +2,11 @@
 
 A simple game review website developed using React, Node.js, PostgreSQL, and Keycloak.
 
+## Screenshots
+![Game Review Website](./Capture.PNG)
+
+![Game Review Website](./Capture2.PNG)
+
 ## Technologies
 
 ### Frontend
