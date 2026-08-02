@@ -1,16 +1,72 @@
-# React + Vite
+# Game Review Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple game review website developed using React, Node.js, PostgreSQL, and Keycloak.
 
-Currently, two official plugins are available:
+## Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Frontend
 
-## React Compiler
+* **React** – Component-based user interface
+* **Vite** – Frontend build tool and development server
+* **React Router** – Client-side routing
+* **Bootstrap** – UI styling and responsive layout
+* **React Icons** – Icon library
+* **JavaScript (JSX)** – Frontend development
+* **ESLint** – Code linting and quality
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Backend
 
-## Expanding the ESLint configuration
+* **Node.js** – Server-side JavaScript runtime
+* **Express** – REST API framework
+* **PostgreSQL** – Relational database
+* **node-postgres (`pg`)** – PostgreSQL database connectivity
+* **CORS** – Cross-origin resource sharing
+* **JOSE** – JWT handling and verification
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Authentication
+
+* **Keycloak** – Identity and access management
+* **OpenID Connect** – Authentication protocol
+* **OAuth 2.0** – Authorization framework
+* **JSON Web Tokens (JWT)** – Authentication and API authorization
+
+## Architecture
+
+```text
+React + Vite
+     │
+     │ HTTP / REST API
+     ▼
+Node.js + Express
+     │
+     ├──────────────► PostgreSQL
+     │
+     └──────────────► Keycloak
+```
+
+
+## Project Structure
+
+```text
+├── keycloak/       # Keycloak configuration
+├── public/         # Static assets
+├── server/         # Node.js / Express backend
+├── src/            # React frontend
+├── package.json
+├── vite.config.js
+└── eslint.config.js
+```
+
+## Overview
+
+This Project of mine developed my understanding of the below:
+
+* React frontend development
+* REST API development
+* Relational database integration
+* User authentication and authorization
+* JWT-based API security
+* Client-server communication
+* Frontend routing
+* Git-based development
+* Access tokens, refresh tokens
