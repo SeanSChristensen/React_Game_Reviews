@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const { Pool } = require('pg');
 const jose = require("jose");
-const { data } = require("react-router-dom");
+const { data } = require("react-router-dom"); 
+const { createClient } = require('redis');
 
 
 const pool = new Pool({
@@ -22,6 +23,16 @@ app.use(express.json());
 
 var client = pool.connect()
 
+const redis_client = createClient();
+redis_client.on('error', err => console.log('Redis Client Error', err));
+redis_client.connect();
+
+app.get("/api/testredis/", async (req, res) => {
+    await redis_client.set('key', 'value');
+    const value = await redis_client.get('key');
+    console.log(value);
+})
+
 async function runQuery(queryString) {
     const res = await pool.query(queryString)
     return res
@@ -32,6 +43,8 @@ async function getNameFromToken(token) {
     const details = await jose.decodeJwt(token)
     return details.name
 }
+
+
 
 function getKeycloakJsonWebKeySet() {
     const result = jose.createRemoteJWKSet(new URL('http://localhost:8080/realms/my-react-app/protocol/openid-connect/certs'))
@@ -48,6 +61,18 @@ async function isTokenValid(token) {
         return false
     }
 }
+
+async function storeJsonInRedis(key, value) {
+    const jsonString = JSON.stringify(value);
+    await redis_client.set(key, jsonString);
+}
+
+async function getJsonFromRedis(key) {
+    const redisGet = await redis_client.get(key);
+    const deserializedJson = JSON.parse(redisGet);
+    return deserializedJson;
+}
+
 
 
 app.post('/rating', async (req, res) => {
@@ -96,11 +121,19 @@ app.get("/api/gameInfo/:gameName", async (req, res) => {
     }
     else {
         try {
+            const redisCachedResult = await getJsonFromRedis(`gameInfo:${gameName}`);
+            if (redisCachedResult !== null) {
+                response.data = redisCachedResult;
+                res.status(200).json(response);
+                return;
+            }
+
             result = await runQuery(`select * from public."Game" where name = '${gameName}'`)
             if (result.rowCount == 0) {
                 res.status(404).json({ error: "Game not found" });
             }
             else {
+                await storeJsonInRedis(`gameInfo:${gameName}`, result.rows[0]);
                 response.data = result.rows[0]
                 res.status(200).json(response)
             }
@@ -162,9 +195,21 @@ app.get("/api/gameList/", async (req, res) => {
     var result = {};
     var response = {};
     try {
-        result = await runQuery(`select name from public."Game"`);
-        response.data = result.rows
-        res.status(200)
+        const redisCachedResult = await getJsonFromRedis('gameList');
+
+        if (redisCachedResult !== null) {
+            response.data = redisCachedResult;
+            res.status(200).json(response);
+            return;
+        }
+        else {
+            result = await runQuery(`select name from public."Game"`);
+            await storeJsonInRedis('gameList', result.rows);
+            response.data = result.rows;
+            res.status(200);
+        }
+
+
     } catch (e) {
         response = { status: "error", error: e }
         res.status(500)
