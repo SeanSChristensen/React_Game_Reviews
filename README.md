@@ -24,6 +24,7 @@ A simple game review website developed using React, Node.js, PostgreSQL, and Key
 * **Node.js** – Server-side JavaScript runtime
 * **Express** – REST API framework
 * **PostgreSQL** – Relational database
+* **Redis** – In memory caching for frequently requested data
 * **node-postgres (`pg`)** – PostgreSQL database connectivity
 * **CORS** – Cross-origin resource sharing
 * **JOSE** – JWT handling and verification
@@ -35,18 +36,23 @@ A simple game review website developed using React, Node.js, PostgreSQL, and Key
 * **OAuth 2.0** – Authorization framework
 * **JSON Web Tokens (JWT)** – Authentication and API authorization
 
+
 ## Architecture
 
 ```text
-React + Vite
+                         ┌──────────────► PostgreSQL
+                         │
+React + Vite             │
+     │                   │
+     │ HTTP / REST API   │
+     ▼                   │
+Node.js + Express ───────┤
+     │                   │
+     │                   └──────────────► Redis
+     │                                      │
+     │                                      │ Cached data
      │
-     │ HTTP / REST API
-     ▼
-Node.js + Express
-     │
-     ├──────────────► PostgreSQL
-     │
-     └──────────────► Keycloak
+     └───────────────────────────────────► Keycloak
 ```
 
 
@@ -75,3 +81,4 @@ This Project of mine developed my understanding of the below:
 * Frontend routing
 * Git-based development
 * Access tokens, refresh tokens
+* Results caching in memory
